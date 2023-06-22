@@ -102,7 +102,16 @@ function OfficeUse() {
 
   const handleCompleteTripSubmit = async (e) => {
     e.preventDefault();
-    if (!total || !tripId || !startReading || !endReading || !inTime || !inDate || !outTime || !outDate) {
+    if (
+      !total ||
+      !tripId ||
+      !startReading ||
+      !endReading ||
+      !inTime ||
+      !inDate ||
+      !outTime ||
+      !outDate
+    ) {
       return;
     }
 
@@ -116,10 +125,10 @@ function OfficeUse() {
           trip_id: tripId,
           start: startReading,
           end: endReading,
-          inti:inTime,
-          indi:inDate,
-          outi:outTime,
-          outdi:outDate,
+          inTime: inTime,
+          inDate: inDate,
+          outTime: outTime,
+          outDate: outDate,
         },
         {
           headers: {
@@ -425,13 +434,10 @@ function OfficeUse() {
                                           className="px-4 py-2 border rounded-md"
                                         />
 
-
                                         <button
                                           type="submit"
                                           className="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600"
                                         >
-
-
                                           Complete Trip
                                         </button>
                                       </form>
