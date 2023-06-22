@@ -99,20 +99,21 @@ const PrintReadyComponent = () => {
         </div>
         <div className="print-component" id="print-component">
           <div className="flex flex-wrap justify-center text-black bg-white">
-            {dutySlips.map((dutySlip, index) => (
-              <div className="Heading" id="Heading">
-                <div>
-                  <div className="flex items-center imageitis">
-                    <img src="public/logo.png" alt="image" className="imageitis" />
-
-                  </div>
-
-                  <h5 className="text-[30px] leading-[30px] font-montserrat font-extrabold tracking-none text-white-900 dark:text-white">
-                    <p className="text-4xl font-bold mb-4 text-black">DUTY SLIPS</p>
-                  </h5>
+            <div className="Heading" id="Heading">
+              <div>
+                <div className="flex items-center imageitis">
+                  <img src="logo.png" alt="image" className="imageitis" />
                 </div>
-                <div className="flex flex-wrap border border-gray-500 p-4 mb-4">
 
+                <h5 className="text-[30px] leading-[30px] font-montserrat font-extrabold tracking-none text-white-900 dark:text-white">
+                  <p className="text-4xl font-bold mb-4 text-black">
+                    DUTY SLIPS
+                  </p>
+                </h5>
+              </div>
+
+              {dutySlips.map((dutySlip, index) => (
+                <div className="flex flex-wrap border border-gray-500 p-4 mb-4">
                   <div className="w-1/4 p-2 border-b border-r border-gray-500">
                     <strong>Driver Name:</strong>{" "}
                     <div className="border border-gray-500 p-2">
@@ -237,8 +238,8 @@ const PrintReadyComponent = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
         <button
