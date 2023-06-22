@@ -42,7 +42,9 @@ function Requisition() {
     });
 
     if (selectedDate === currentDate) {
-      const selectedTime = new Date(`1970-01-01T${inputTime}`).toLocaleTimeString(navigator.language, {
+      const selectedTime = new Date(
+        `1970-01-01T${inputTime}`
+      ).toLocaleTimeString(navigator.language, {
         hour: "2-digit",
         minute: "2-digit",
       });
@@ -60,8 +62,6 @@ function Requisition() {
       hour: "2-digit",
       minute: "2-digit",
     });
-
-
 
     setLoading(true);
 
@@ -91,8 +91,13 @@ function Requisition() {
         }
       })
       .catch((error) => {
-        setLoading(false);
-        if (error.response.status === 401) {
+        if (error.code === "ERR_NETWORK") {
+          setError(true);
+          setErrorMessage("Server Error! Please try later. ");
+          setTimeout(() => {
+            setError(false);
+          }, 5000);
+        } else if (error.response.status === 401) {
           setError(true);
           const msg = `${error.response.data.detail}. Going back to the authentication page in 5 seconds.`;
           setErrorMessage(msg);
@@ -105,7 +110,7 @@ function Requisition() {
           if (error.message === "Network Error") {
             setErrorMessage("Server Error!");
           } else {
-            setErrorMessage(error.response.data.detail);
+            setErrorMessage(error.message);
           }
           setTimeout(() => {
             setError(false);
@@ -127,7 +132,8 @@ function Requisition() {
         {success && (
           <Alert color="success" icon={HiCheck} className="mb-4">
             <span>
-              <span className="font-medium">Success!</span> Vehicle Requisition Form Submitted. Check back later for status.
+              <span className="font-medium">Success!</span> Vehicle Requisition
+              Form Submitted. Check back later for status.
             </span>
           </Alert>
         )}
@@ -163,7 +169,11 @@ function Requisition() {
                     required={true}
                     autoComplete="off"
                   />
-                  {!isDateValid(formValues.date) && <span className="text-red-500">Please enter a valid date.</span>}
+                  {!isDateValid(formValues.date) && (
+                    <span className="text-red-500">
+                      Please enter a valid date.
+                    </span>
+                  )}
                 </div>
 
                 <div className="grid-item">
@@ -177,7 +187,11 @@ function Requisition() {
                     required={true}
                     autoComplete="off"
                   />
-                  {!isTimeValid(formValues.time, formValues.date) && <span className="text-red-500">Please enter a valid time.</span>}
+                  {!isTimeValid(formValues.time, formValues.date) && (
+                    <span className="text-red-500">
+                      Please enter a valid time.
+                    </span>
+                  )}
                 </div>
 
                 <div className="grid-item">
@@ -240,7 +254,9 @@ function Requisition() {
               <Button
                 type="submit"
                 className="mt-10 inline-flex items-center justify-center px-5 py-3 mr-3 text-inter font-normal text-center text-white rounded-lg bg-[#558EFF] hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 text-[#1E1E1E]"
-                disabled={!isDateValid(formValues.date) || !isTimeValid(formValues.time)}
+                disabled={
+                  !isDateValid(formValues.date) || !isTimeValid(formValues.time)
+                }
               >
                 <span className="text-center">Send a Booking Request</span>
                 <svg

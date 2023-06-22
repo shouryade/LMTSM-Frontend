@@ -22,10 +22,15 @@ const RoleManagement = () => {
       });
       setUsers(response.data);
     } catch (error) {
-      setLoading(false);
-      if (error.response.status == 401) {
+      if (error.code === "ERR_NETWORK") {
         setError(true);
-        const msg = `${error.response.data.detail}. Going back to authentication page in 5 seconds.`;
+        setErrorMessage("Server Error! Please try later. ");
+        setTimeout(() => {
+          setError(false);
+        }, 5000);
+      } else if (error.response.status === 401) {
+        setError(true);
+        const msg = `${error.response.data.detail}. Going back to the authentication page in 5 seconds.`;
         setErrorMessage(msg);
         localStorage.removeItem("jwt");
         setTimeout(() => {
@@ -33,17 +38,15 @@ const RoleManagement = () => {
         }, 5000);
       } else {
         setError(true);
-        if (error.message == "Network Error") {
+        if (error.message === "Network Error") {
           setErrorMessage("Server Error!");
         } else {
-          setErrorMessage(error.response.data.detail);
+          setErrorMessage(error.message);
         }
         setTimeout(() => {
           setError(false);
         }, 5000);
       }
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -66,9 +69,15 @@ const RoleManagement = () => {
       fetchUsers();
     } catch (error) {
       setLoading(false);
-      if (error.response.status == 401) {
+      if (error.code === "ERR_NETWORK") {
         setError(true);
-        const msg = `${error.response.data.detail}. Going back to authentication page in 5 seconds.`;
+        setErrorMessage("Server Error! Please try later. ");
+        setTimeout(() => {
+          setError(false);
+        }, 5000);
+      } else if (error.response.status === 401) {
+        setError(true);
+        const msg = `${error.response.data.detail}. Going back to the authentication page in 5 seconds.`;
         setErrorMessage(msg);
         localStorage.removeItem("jwt");
         setTimeout(() => {
@@ -76,10 +85,10 @@ const RoleManagement = () => {
         }, 5000);
       } else {
         setError(true);
-        if (error.message == "Network Error") {
+        if (error.message === "Network Error") {
           setErrorMessage("Server Error!");
         } else {
-          setErrorMessage(error.response.data.detail);
+          setErrorMessage(error.message);
         }
         setTimeout(() => {
           setError(false);
@@ -99,9 +108,15 @@ const RoleManagement = () => {
       fetchUsers();
     } catch (error) {
       setLoading(false);
-      if (error.response.status == 401) {
+      if (error.code === "ERR_NETWORK") {
         setError(true);
-        const msg = `${error.response.data.detail}. Going back to authentication page in 5 seconds.`;
+        setErrorMessage("Server Error! Please try later. ");
+        setTimeout(() => {
+          setError(false);
+        }, 5000);
+      } else if (error.response.status === 401) {
+        setError(true);
+        const msg = `${error.response.data.detail}. Going back to the authentication page in 5 seconds.`;
         setErrorMessage(msg);
         localStorage.removeItem("jwt");
         setTimeout(() => {
@@ -109,10 +124,10 @@ const RoleManagement = () => {
         }, 5000);
       } else {
         setError(true);
-        if (error.message == "Network Error") {
+        if (error.message === "Network Error") {
           setErrorMessage("Server Error!");
         } else {
-          setErrorMessage(error.response.data.detail);
+          setErrorMessage(error.message);
         }
         setTimeout(() => {
           setError(false);
