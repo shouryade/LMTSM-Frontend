@@ -7,6 +7,8 @@ import { Alert, Button } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
+// import "public/logo.png";
+
 const PrintReadyComponent = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -96,109 +98,143 @@ const PrintReadyComponent = () => {
           </button>
         </div>
         <div className="print-component" id="print-component">
-          <h5 className="text-[30px] leading-[30px] font-montserrat font-extrabold tracking-none text-white-900 dark:text-white">
-            <p className="text-2xl font-bold mb-4 text-white">DUTY SLIPS</p>
-          </h5>
           <div className="flex flex-wrap justify-center text-black bg-white">
             {dutySlips.map((dutySlip, index) => (
-              <div className="flex flex-wrap border border-gray-500 p-4 mb-4">
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Driver Name:</strong>{" "}
-                  <div className="border border-gray-500 p-2">
-                    {dutySlip.name_of_driver}
-                  </div>
-                </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Vehicle Number:</strong>{" "}
-                  <div className="border border-gray-500 p-2">
-                    {dutySlip.vehicle_number}
-                  </div>
-                </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Date:</strong>{" "}
-                  <div className="border border-gray-500 p-2">
-                    {new Date(dutySlip.date).toLocaleDateString("en-GB")}
-                  </div>
-                </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Time:</strong>{" "}
-                  <div className="border border-gray-500 p-2">
-                    {dutySlip.time}
-                  </div>
-                </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Booking For:</strong>{" "}
-                  <div className="border border-gray-500 p-2">
-                    {dutySlip.booking_name}
-                  </div>
-                </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Place of Visit:</strong>{" "}
-                  <div className="border border-gray-500 p-2">
-                    {dutySlip.place_of_visit}
-                  </div>
-                </div>
+              <div className="Heading" id="Heading">
+                <div>
+                  <div className="flex items-center imageitis">
+                    <img src="public/logo.png" alt="image" className="imageitis" />
 
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Number of People:</strong>{" "}
-                  <div className="border border-gray-500 p-2">
-                    {dutySlip.num_people}
                   </div>
+
+                  <h5 className="text-[30px] leading-[30px] font-montserrat font-extrabold tracking-none text-white-900 dark:text-white">
+                    <p className="text-4xl font-bold mb-4 text-black">DUTY SLIPS</p>
+                  </h5>
                 </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Phone Number:</strong>{" "}
-                  <div className="border border-gray-500 p-2">
-                    {dutySlip.phone}
+                <div className="flex flex-wrap border border-gray-500 p-4 mb-4">
+
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Driver Name:</strong>{" "}
+                    <div className="border border-gray-500 p-2">
+                      {dutySlip.name_of_driver}
+                    </div>
                   </div>
-                </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Department:</strong>{" "}
-                  <div className="border border-gray-500 p-2">
-                    {dutySlip.dep}
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Vehicle Number:</strong>{" "}
+                    <div className="border border-gray-500 p-2">
+                      {dutySlip.vehicle_number}
+                    </div>
                   </div>
-                </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Designation:</strong>{" "}
-                  <div className="border border-gray-500 p-2">
-                    {dutySlip.des}
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Date:</strong>{" "}
+                    <div className="border border-gray-500 p-2">
+                      {new Date(dutySlip.date).toLocaleDateString("en-GB")}
+                    </div>
                   </div>
-                </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Purpose:</strong>{" "}
-                  <div className="border border-gray-500 p-2">
-                    {dutySlip.purpose}
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Time:</strong>{" "}
+                    <div className="border border-gray-500 p-2">
+                      {dutySlip.time}
+                    </div>
                   </div>
-                </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Chargeable Head:</strong>{" "}
-                  <div className="border border-gray-500 p-2">
-                    {dutySlip.chargeable_head
-                      ? dutySlip.chargeable_head
-                      : "N/A"}
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Booking For:</strong>{" "}
+                    <div className="border border-gray-500 p-2">
+                      {dutySlip.booking_name}
+                    </div>
                   </div>
-                </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Transaction ID:</strong>{" "}
-                  <div className="border border-gray-500 p-2 text-white">
-                    Txn ID
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Place of Visit:</strong>{" "}
+                    <div className="border border-gray-500 p-2">
+                      {dutySlip.place_of_visit}
+                    </div>
                   </div>
-                </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Total Amount:</strong>{" "}
-                  <div className="border border-gray-500 p-2 text-white">
-                    Amount
+
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Number of People:</strong>{" "}
+                    <div className="border border-gray-500 p-2">
+                      {dutySlip.num_people}
+                    </div>
                   </div>
-                </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Initial Meter Reading:</strong>{" "}
-                  <div className="border border-gray-500 p-2 text-white">
-                    Meter
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Phone Number:</strong>{" "}
+                    <div className="border border-gray-500 p-2">
+                      {dutySlip.phone}
+                    </div>
                   </div>
-                </div>
-                <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                  <strong>Final Meter Reading:</strong>{" "}
-                  <div className="border border-gray-500 p-2 text-white">
-                    Final
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Department:</strong>{" "}
+                    <div className="border border-gray-500 p-2">
+                      {dutySlip.dep}
+                    </div>
+                  </div>
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Designation:</strong>{" "}
+                    <div className="border border-gray-500 p-2">
+                      {dutySlip.des}
+                    </div>
+                  </div>
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Purpose:</strong>{" "}
+                    <div className="border border-gray-500 p-2">
+                      {dutySlip.purpose}
+                    </div>
+                  </div>
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Chargeable Head:</strong>{" "}
+                    <div className="border border-gray-500 p-2">
+                      {dutySlip.chargeable_head
+                        ? dutySlip.chargeable_head
+                        : "N/A"}
+                    </div>
+                  </div>
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Transaction ID:</strong>{" "}
+                    <div className="border border-gray-500 p-2 text-white">
+                      Txn ID
+                    </div>
+                  </div>
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Total Amount:</strong>{" "}
+                    <div className="border border-gray-500 p-2 text-white">
+                      Amount
+                    </div>
+                  </div>
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Initial Meter Reading:</strong>{" "}
+                    <div className="border border-gray-500 p-2 text-white">
+                      Meter
+                    </div>
+                  </div>
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Final Meter Reading:</strong>{" "}
+                    <div className="border border-gray-500 p-2 text-white">
+                      Final
+                    </div>
+                  </div>
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Out Date:</strong>{" "}
+                    <div className="border border-gray-500 p-2 text-white">
+                      Out date
+                    </div>
+                  </div>
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>Out Time:</strong>{" "}
+                    <div className="border border-gray-500 p-2 text-white">
+                      out time
+                    </div>
+                  </div>
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>In Date:</strong>{" "}
+                    <div className="border border-gray-500 p-2 text-white">
+                      in date
+                    </div>
+                  </div>
+                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
+                    <strong>In time</strong>{" "}
+                    <div className="border border-gray-500 p-2 text-white">
+                      in time
+                    </div>
                   </div>
                 </div>
               </div>
