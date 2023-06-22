@@ -98,6 +98,17 @@ input[type="number"] {
   background: transparent;
 }
 
+
+.imageitis{
+  width: 350px; /* Adjust the width to match the desired size */
+  height: 80px; /* Adjust the height to match the desired size */
+  margin-left: 10px;
+  margin-bottom: 0px;
+  margin-top: 90px;
+}
+
+
+
 @media only screen and (max-width: 600px) {
 
   .cardGroup {
@@ -109,4 +120,5 @@ input[type="number"] {
     display: flex;
     flex-direction: column;
   }
+
 }

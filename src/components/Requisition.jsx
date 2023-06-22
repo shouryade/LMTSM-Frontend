@@ -29,20 +29,49 @@ function Requisition() {
     });
   };
 
+  const isDateValid = (inputDate) => {
+    const currentDate = new Date().toISOString().split("T")[0];
+    return inputDate >= currentDate;
+  };
+
+  const isTimeValid = (inputTime, selectedDate) => {
+    const currentDate = new Date().toISOString().split("T")[0];
+    const currentTime = new Date().toLocaleTimeString(navigator.language, {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    if (selectedDate === currentDate) {
+      const selectedTime = new Date(`1970-01-01T${inputTime}`).toLocaleTimeString(navigator.language, {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      return selectedTime >= currentTime;
+    }
+
+    return true;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post(
-        "http://localhost:8100/v1/booking/request",
 
-        formValues,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            Accept: "application/json",
-          },
-        }
-      )
+    const currentDate = new Date().toISOString().split("T")[0];
+    const currentTime = new Date().toLocaleTimeString(navigator.language, {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+
+
+    setLoading(true);
+
+    axios
+      .post("http://localhost:8100/v1/booking/request", formValues, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Accept: "application/json",
+        },
+      })
       .then((response) => {
         if (response.status === 200) {
           setSuccess(true);
@@ -63,9 +92,9 @@ function Requisition() {
       })
       .catch((error) => {
         setLoading(false);
-        if (error.response.status == 401) {
+        if (error.response.status === 401) {
           setError(true);
-          const msg = `${error.response.data.detail}. Going back to authentication page in 5 seconds.`;
+          const msg = `${error.response.data.detail}. Going back to the authentication page in 5 seconds.`;
           setErrorMessage(msg);
           localStorage.removeItem("jwt");
           setTimeout(() => {
@@ -73,7 +102,7 @@ function Requisition() {
           }, 5000);
         } else {
           setError(true);
-          if (error.message == "Network Error") {
+          if (error.message === "Network Error") {
             setErrorMessage("Server Error!");
           } else {
             setErrorMessage(error.response.data.detail);
@@ -98,8 +127,7 @@ function Requisition() {
         {success && (
           <Alert color="success" icon={HiCheck} className="mb-4">
             <span>
-              <span className="font-medium">Success!</span> Vehicle Requisition
-              Form Submitted. Check back later for status.
+              <span className="font-medium">Success!</span> Vehicle Requisition Form Submitted. Check back later for status.
             </span>
           </Alert>
         )}
@@ -135,7 +163,9 @@ function Requisition() {
                     required={true}
                     autoComplete="off"
                   />
+                  {!isDateValid(formValues.date) && <span className="text-red-500">Please enter a valid date.</span>}
                 </div>
+
                 <div className="grid-item">
                   <label className="label">Time of Visit</label>
                   <input
@@ -147,7 +177,9 @@ function Requisition() {
                     required={true}
                     autoComplete="off"
                   />
+                  {!isTimeValid(formValues.time, formValues.date) && <span className="text-red-500">Please enter a valid time.</span>}
                 </div>
+
                 <div className="grid-item">
                   <label className="label">Place of Visit</label>
                   <input
@@ -160,6 +192,7 @@ function Requisition() {
                     autoComplete="off"
                   />
                 </div>
+
                 <div className="grid-item">
                   <label className="label">Number of People</label>
                   <input
@@ -170,6 +203,7 @@ function Requisition() {
                     onChange={handleChange}
                   />
                 </div>
+
                 <div className="grid-item">
                   <label className="label">Purpose</label>
                   <select
@@ -206,6 +240,7 @@ function Requisition() {
               <Button
                 type="submit"
                 className="mt-10 inline-flex items-center justify-center px-5 py-3 mr-3 text-inter font-normal text-center text-white rounded-lg bg-[#558EFF] hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 text-[#1E1E1E]"
+                disabled={!isDateValid(formValues.date) || !isTimeValid(formValues.time)}
               >
                 <span className="text-center">Send a Booking Request</span>
                 <svg
@@ -216,7 +251,7 @@ function Requisition() {
                 >
                   <path
                     fillRule="evenodd"
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H4a1 1 0 010-2h10.586l-4.293-4.293a1 1 0 010-1.414z"
                     clipRule="evenodd"
                   ></path>
                 </svg>

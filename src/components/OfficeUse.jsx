@@ -18,6 +18,10 @@ function OfficeUse() {
   const [tripId, setTripId] = useState("");
   const [startReading, setStartReading] = useState("");
   const [endReading, setEndReading] = useState("");
+  const [inTime, setInTime] = useState("");
+  const [inDate, setInDate] = useState("");
+  const [outDate, setOutDate] = useState("");
+  const [outTime, setOutTime] = useState("");
   const [dropdownId, setDropdownId] = useState("");
 
   useEffect(() => {
@@ -98,7 +102,7 @@ function OfficeUse() {
 
   const handleCompleteTripSubmit = async (e) => {
     e.preventDefault();
-    if (!total || !tripId || !startReading || !endReading) {
+    if (!total || !tripId || !startReading || !endReading || !inTime || !inDate || !outTime || !outDate) {
       return;
     }
 
@@ -112,6 +116,10 @@ function OfficeUse() {
           trip_id: tripId,
           start: startReading,
           end: endReading,
+          inti:inTime,
+          indi:inDate,
+          outi:outTime,
+          outdi:outDate,
         },
         {
           headers: {
@@ -127,6 +135,10 @@ function OfficeUse() {
       setTripId(null);
       setStartReading(null);
       setEndReading(null);
+      setInTime(null);
+      setInDate(null);
+      setOutDate(null);
+      setOutTime(null);
     } catch (error) {
       handleRequestError(error);
     } finally {
@@ -287,13 +299,13 @@ function OfficeUse() {
                                     >
                                       <input
                                         type="text"
-                                        placeholder="Driver Name"
+                                        placeholder="driver Name"
                                         value={name}
                                         required={true}
                                         onChange={(e) => {
                                           setName(e.target.value);
                                         }}
-                                        className="px-4 py-2 border rounded-md"
+                                        className="px-0 py-0 border rounded-md"
                                       />
                                       <input
                                         type="tel"
@@ -304,7 +316,7 @@ function OfficeUse() {
                                         onChange={(e) => {
                                           setPhone(e.target.value);
                                         }}
-                                        className="px-4 py-2 border rounded-md"
+                                        className="px-0 py-0 border rounded-md"
                                       />
                                       <input
                                         type="text"
@@ -315,7 +327,7 @@ function OfficeUse() {
                                         onChange={(e) => {
                                           setVehicle(e.target.value);
                                         }}
-                                        className="px-4 py-2 border rounded-md"
+                                        className="px-0 py-0 border rounded-md"
                                       />
                                       <button
                                         type="submit"
@@ -371,10 +383,55 @@ function OfficeUse() {
                                           required={true}
                                           className="px-4 py-2 border rounded-md"
                                         />
+
+                                        <input
+                                          type="text"
+                                          placeholder="Out Date"
+                                          value={outDate}
+                                          onChange={(e) =>
+                                            setOutDate(e.target.value)
+                                          }
+                                          required={true}
+                                          className="px-4 py-2 border rounded-md"
+                                        />
+                                        <input
+                                          type="text"
+                                          placeholder="Out Time"
+                                          value={outTime}
+                                          onChange={(e) =>
+                                            setOutTime(e.target.value)
+                                          }
+                                          required={true}
+                                          className="px-4 py-2 border rounded-md"
+                                        />
+                                        <input
+                                          type="text"
+                                          placeholder="In Date "
+                                          value={inDate}
+                                          onChange={(e) =>
+                                            setInDate(e.target.value)
+                                          }
+                                          required={true}
+                                          className="px-4 py-2 border rounded-md"
+                                        />
+                                        <input
+                                          type="text"
+                                          placeholder="In Time"
+                                          value={inTime}
+                                          onChange={(e) =>
+                                            setInTime(e.target.value)
+                                          }
+                                          required={true}
+                                          className="px-4 py-2 border rounded-md"
+                                        />
+
+
                                         <button
                                           type="submit"
                                           className="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600"
                                         >
+
+
                                           Complete Trip
                                         </button>
                                       </form>
