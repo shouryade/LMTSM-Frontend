@@ -13,6 +13,38 @@ const Status = () => {
   const [error, setError] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
+
+
+  const handleRequestError = (error) => {
+    setLoading(false);
+
+    if (error.code === "ERR_NETWORK") {
+      setError(true);
+      setErrorMessage("Server Error! Please try later. ");
+      setTimeout(() => {
+        setError(false);
+      }, 5000);
+    } else if (error.response.status === 401) {
+      setError(true);
+      const msg = `${error.response.data.detail}. Going back to the authentication page in 5 seconds.`;
+      setErrorMessage(msg);
+      localStorage.removeItem("jwt");
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000);
+    } else {
+      setError(true);
+      if (error.message === "Network Error") {
+        setErrorMessage("Server Error!");
+      } else {
+        setErrorMessage(error.message);
+      }
+      setTimeout(() => {
+        setError(false);
+      }, 5000);
+    }
+  };
+
   const fetchBookings = async () => {
     setLoading(true);
     try {
@@ -27,31 +59,7 @@ const Status = () => {
       );
       setBookings(response.data);
     } catch (error) {
-      if (error.code === "ERR_NETWORK") {
-        setError(true);
-        setErrorMessage("Server Error! Please try later. ");
-        setTimeout(() => {
-          setError(false);
-        }, 5000);
-      } else if (error.response.status === 401) {
-        setError(true);
-        const msg = `${error.response.data.detail}. Going back to the authentication page in 5 seconds.`;
-        setErrorMessage(msg);
-        localStorage.removeItem("jwt");
-        setTimeout(() => {
-          navigate("/login");
-        }, 5000);
-      } else {
-        setError(true);
-        if (error.message === "Network Error") {
-          setErrorMessage("Server Error!");
-        } else {
-          setErrorMessage(error.message);
-        }
-        setTimeout(() => {
-          setError(false);
-        }, 5000);
-      }
+     handleRequestError(error);
     } finally {
       setLoading(false);
     }
