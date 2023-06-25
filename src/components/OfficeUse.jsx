@@ -314,13 +314,13 @@ function OfficeUse() {
                                     >
                                       <input
                                         type="text"
-                                        placeholder="driver Name"
+                                        placeholder="Driver Name"
                                         value={name}
                                         required={true}
                                         onChange={(e) => {
                                           setName(e.target.value);
                                         }}
-                                        className="px-0 py-0 border rounded-md"
+                                        className="px-4 py-2 border rounded-md"
                                       />
                                       <input
                                         type="tel"
@@ -331,7 +331,7 @@ function OfficeUse() {
                                         onChange={(e) => {
                                           setPhone(e.target.value);
                                         }}
-                                        className="px-0 py-0 border rounded-md"
+                                        className="px-4 py-2 border rounded-md"
                                       />
                                       <input
                                         type="text"
@@ -342,7 +342,7 @@ function OfficeUse() {
                                         onChange={(e) => {
                                           setVehicle(e.target.value);
                                         }}
-                                        className="px-0 py-0 border rounded-md"
+                                        className="px-4 py-2 border rounded-md"
                                       />
                                       <button
                                         type="submit"
