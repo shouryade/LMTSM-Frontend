@@ -32,7 +32,6 @@ const Approvals = () => {
 
   const handleApproveBooking = async (id) => {
     try {
-      console.log(id);
       const res = await axios.put(
         `http://localhost:8100/v1/booking/approve/${id}`,
         { _id: id, status: "Approved" },
