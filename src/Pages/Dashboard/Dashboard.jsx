@@ -6,6 +6,7 @@ import {
   HiUsers,
   HiBadgeCheck,
   HiOutlineInboxIn,
+  HiDocumentDownload,
 } from "react-icons/hi";
 import Requisition from "../../components/Requisition";
 import { useState, useEffect } from "react";
@@ -16,6 +17,7 @@ import OfficeUse from "../../components/OfficeUse";
 import Status from "../../components/Status";
 import RoleManagement from "../../components/RoleManagement";
 import PrintReadyComponent from "../../components/PrintReadyComponent";
+import DownloadFile from "../../components/Download";
 
 const Dashboard = () => {
   const [admin, setAdmin] = useState(false);
@@ -67,16 +69,24 @@ const Dashboard = () => {
         ) : (
           <Tabs.Item disabled={true} title=""></Tabs.Item>
         )}
-        {superAdmin ? (
-          <Tabs.Item title="Admin Access" icon={HiUsers}>
-            <RoleManagement />
+
+        {admin ? (
+          <Tabs.Item title="Duty Slip" icon={HiOutlineInboxIn}>
+            <PrintReadyComponent />
           </Tabs.Item>
         ) : (
           <Tabs.Item disabled={true} title=""></Tabs.Item>
         )}
         {admin ? (
-          <Tabs.Item title="Duty Slip" icon={HiOutlineInboxIn}>
-            <PrintReadyComponent />
+          <Tabs.Item title="Download Completed Trips" icon={HiDocumentDownload}>
+            <DownloadFile />
+          </Tabs.Item>
+        ) : (
+          <Tabs.Item disabled={true} title=""></Tabs.Item>
+        )}
+        {superAdmin ? (
+          <Tabs.Item title="Admin Access" icon={HiUsers}>
+            <RoleManagement />
           </Tabs.Item>
         ) : (
           <Tabs.Item disabled={true} title=""></Tabs.Item>
