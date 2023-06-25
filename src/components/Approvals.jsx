@@ -26,28 +26,7 @@ const Approvals = () => {
       );
       setBookings(response.data);
     } catch (error) {
-      setLoading(false);
-      if (error.response.status == 401) {
-        setError(true);
-        const msg = `${error.response.data.detail}. Going back to authentication page in 5 seconds.`;
-        setErrorMessage(msg);
-        localStorage.removeItem("jwt");
-        setTimeout(() => {
-          navigate("/login");
-        }, 5000);
-      } else {
-        setError(true);
-        if (error.message == "Network Error") {
-          setErrorMessage("Server Error!");
-        } else {
-          setErrorMessage(error.response.data.detail);
-        }
-        setTimeout(() => {
-          setError(false);
-        }, 5000);
-      }
-    } finally {
-      setLoading(false);
+      handleRequestError(error);
     }
   };
 
@@ -70,26 +49,7 @@ const Approvals = () => {
         )
       );
     } catch (error) {
-      setLoading(false);
-      if (error.response.status == 401) {
-        setError(true);
-        const msg = `${error.response.data.detail}. Going back to authentication page in 5 seconds.`;
-        setErrorMessage(msg);
-        localStorage.removeItem("jwt");
-        setTimeout(() => {
-          navigate("/login");
-        }, 5000);
-      } else {
-        setError(true);
-        if (error.message == "Network Error") {
-          setErrorMessage("Server Error!");
-        } else {
-          setErrorMessage(error.response.data.detail);
-        }
-        setTimeout(() => {
-          setError(false);
-        }, 5000);
-      }
+      handleRequestError(error);
     }
   };
 
@@ -108,7 +68,7 @@ const Approvals = () => {
         prevBookings.filter((booking) => booking._id !== id)
       );
     } catch (error) {
-     handleRequestError(error);
+      handleRequestError(error);
     }
   };
 

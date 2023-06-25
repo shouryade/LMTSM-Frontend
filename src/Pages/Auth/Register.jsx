@@ -57,7 +57,6 @@ const Register = () => {
       })
       .catch((error) => {
         setError(true);
-        console.log(error);
         setErrorMessage(error.response.data.message);
         setValues({
           email: "",
