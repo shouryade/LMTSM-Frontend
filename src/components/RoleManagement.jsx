@@ -21,12 +21,11 @@ const RoleManagement = () => {
         },
       });
       setUsers(response.data);
+      console.log(response.data);
     } catch (error) {
-     handleRequestError(error);
+      handleRequestError(error);
     }
   };
-
-
 
   const handleRequestError = (error) => {
     setLoading(false);
@@ -83,16 +82,19 @@ const RoleManagement = () => {
 
   const handleRevokeRole = async (id, role) => {
     try {
-      await axios.delete(`http://localhost:8100/v1/admin/approve/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          Accept: "application/json",
-        },
-      });
+      await axios.delete(
+        `http://localhost:8100/v1/admin/approve/${id}?role=${role}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            Accept: "application/json",
+          },
+        }
+      );
       fetchUsers();
     } catch (error) {
       setLoading(false);
-     handleRequestError(error);
+      handleRequestError(error);
     }
   };
   const handleRefresh = () => {
@@ -184,7 +186,9 @@ const RoleManagement = () => {
                             {user.role === "admin" ? (
                               <button
                                 className="text-white bg-red-500 hover:bg-red-700 py-2 px-4 rounded mr-2"
-                                onClick={() => handleRevokeRole(user._id)}
+                                onClick={() =>
+                                  handleRevokeRole(user._id, "admin")
+                                }
                               >
                                 Revoke Admin
                               </button>
@@ -201,7 +205,9 @@ const RoleManagement = () => {
                             {user.role === "super_admin" ? (
                               <button
                                 className="text-white bg-red-500 hover:bg-red-700 py-2 px-4 rounded"
-                                onClick={() => handleRevokeRole(user._id)}
+                                onClick={() =>
+                                  handleRevokeRole(user._id, "super_admin")
+                                }
                               >
                                 Revoke Super Admin
                               </button>
