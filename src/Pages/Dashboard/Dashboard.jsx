@@ -27,7 +27,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8100/v1/auth/users/me/", {
+      .get("/api/v1/auth/users/me/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept: "application/json",

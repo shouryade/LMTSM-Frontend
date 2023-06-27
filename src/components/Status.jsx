@@ -13,8 +13,6 @@ const Status = () => {
   const [error, setError] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
-
-
   const handleRequestError = (error) => {
     setLoading(false);
 
@@ -48,18 +46,15 @@ const Status = () => {
   const fetchBookings = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(
-        "http://localhost:8100/v1/booking/status",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            Accept: "application/json",
-          },
-        }
-      );
+      const response = await axios.get("/api/v1/booking/status", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Accept: "application/json",
+        },
+      });
       setBookings(response.data);
     } catch (error) {
-     handleRequestError(error);
+      handleRequestError(error);
     } finally {
       setLoading(false);
     }

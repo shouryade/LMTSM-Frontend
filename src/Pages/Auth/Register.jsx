@@ -57,7 +57,7 @@ const Register = () => {
     const myObj = JSON.parse(payload);
     axios
       .post(
-        "http://localhost:8100/v1/auth/register",
+        "/api/v1/auth/register",
         {
           des: myObj.des,
           first_name: myObj.first_name,

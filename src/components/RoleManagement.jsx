@@ -14,7 +14,7 @@ const RoleManagement = () => {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:8100/v1/admin/roles", {
+      const response = await axios.get("/api/v1/admin/roles", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept: "application/json",
@@ -63,16 +63,12 @@ const RoleManagement = () => {
 
   const handleApproveRole = async (id, role) => {
     try {
-      await axios.put(
-        `http://localhost:8100/v1/admin/approve/${id}?role=${role}`,
-        null,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            Accept: "application/json",
-          },
-        }
-      );
+      await axios.put(`/api/v1/admin/approve/${id}?role=${role}`, null, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Accept: "application/json",
+        },
+      });
       fetchUsers();
     } catch (error) {
       setLoading(false);
@@ -82,15 +78,12 @@ const RoleManagement = () => {
 
   const handleRevokeRole = async (id, role) => {
     try {
-      await axios.delete(
-        `http://localhost:8100/v1/admin/approve/${id}?role=${role}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            Accept: "application/json",
-          },
-        }
-      );
+      await axios.delete(`/api/v1/admin/approve/${id}?role=${role}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Accept: "application/json",
+        },
+      });
       fetchUsers();
     } catch (error) {
       setLoading(false);

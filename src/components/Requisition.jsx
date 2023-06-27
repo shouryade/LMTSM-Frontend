@@ -66,7 +66,7 @@ function Requisition() {
     setLoading(true);
 
     axios
-      .post("http://localhost:8100/v1/booking/request", formValues, {
+      .post("/api/v1/booking/request", formValues, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept: "application/json",
@@ -91,10 +91,9 @@ function Requisition() {
         }
       })
       .catch((error) => {
-       handleRequestError(error);
+        handleRequestError(error);
       });
   };
-
 
   const handleRequestError = (error) => {
     setLoading(false);

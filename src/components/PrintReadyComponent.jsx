@@ -22,15 +22,12 @@ const PrintReadyComponent = () => {
   }, []);
   const fetchDutySlips = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:8100/v1/booking/duty-slips",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            Accept: "application/json",
-          },
-        }
-      );
+      const response = await axios.get("/api/v1/booking/duty-slips", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Accept: "application/json",
+        },
+      });
       setDutySlips(response.data);
     } catch (error) {
       if (error.code === "ERR_NETWORK") {
@@ -39,7 +36,6 @@ const PrintReadyComponent = () => {
     }
   };
 
-   
   const handleRequestError = (error) => {
     setLoading(false);
 

@@ -15,15 +15,12 @@ const Approvals = () => {
   const fetchBookings = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(
-        "http://localhost:8100/v1/booking/bookings",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            Accept: "application/json",
-          },
-        }
-      );
+      const response = await axios.get("/api/v1/booking/bookings", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Accept: "application/json",
+        },
+      });
       setBookings(response.data);
     } catch (error) {
       handleRequestError(error);
@@ -33,7 +30,7 @@ const Approvals = () => {
   const handleApproveBooking = async (id) => {
     try {
       const res = await axios.put(
-        `http://localhost:8100/v1/booking/approve/${id}`,
+        `/api/v1/booking/approve/${id}`,
         { _id: id, status: "Approved" },
         {
           headers: {
@@ -54,15 +51,12 @@ const Approvals = () => {
 
   const handleDeleteBooking = async (id) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:8100/v1/booking/approve/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            Accept: "application/json",
-          },
-        }
-      );
+      const response = await axios.delete(`/api/v1/booking/approve/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Accept: "application/json",
+        },
+      });
       setBookings((prevBookings) =>
         prevBookings.filter((booking) => booking._id !== id)
       );

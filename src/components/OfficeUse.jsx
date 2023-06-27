@@ -30,15 +30,12 @@ function OfficeUse() {
 
   const fetchApprovedBookings = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:8100/v1/booking/approved",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            Accept: "application/json",
-          },
-        }
-      );
+      const response = await axios.get("/api/v1/booking/approved", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Accept: "application/json",
+        },
+      });
       setBookings(response.data);
     } catch (error) {
       setLoading(false);
@@ -74,7 +71,7 @@ function OfficeUse() {
       setLoading(true);
 
       await axios.put(
-        `http://localhost:8100/v1/booking/approved/${dropdownId}/allocate`,
+        `/api/v1/booking/approved/${dropdownId}/allocate`,
         {
           name,
           phone,
@@ -119,7 +116,7 @@ function OfficeUse() {
       setLoading(true);
 
       await axios.put(
-        `http://localhost:8100/v1/booking/approved/${dropdownId}/completed`,
+        `/api/v1/booking/approved/${dropdownId}/completed`,
         {
           total,
           trip_id: tripId,

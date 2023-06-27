@@ -14,7 +14,7 @@ function DownloadFile() {
 
   const handleDownload = async () => {
     axios
-      .get("http://localhost:8100/v1/booking/download", {
+      .get("/api/v1/booking/download", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept:

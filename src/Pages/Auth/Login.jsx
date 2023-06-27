@@ -52,7 +52,7 @@ export default function Login() {
     const myObj = JSON.parse(payload);
     axios
       .post(
-        "http://localhost:8100/v1/auth/login",
+        "/api/v1/auth/login",
         {
           grant_type: "",
           username: myObj.email,
