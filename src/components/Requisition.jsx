@@ -24,6 +24,7 @@ function Requisition() {
   });
 
   const handleChange = (event) => {
+    console.log(event.target.value);
     setFormValues({
       ...formValues,
       [event.target.name]: event.target.value,
