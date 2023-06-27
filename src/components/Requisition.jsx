@@ -4,6 +4,7 @@ import axios from "axios";
 import { HiCheck, HiInformationCircle } from "react-icons/hi";
 import { Alert } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../endpoint";
 
 function Requisition() {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ function Requisition() {
     setLoading(true);
 
     axios
-      .post("/api/v1/booking/request", formValues, {
+      .post(`${BASE_URL}/v1/booking/request`, formValues, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept: "application/json",

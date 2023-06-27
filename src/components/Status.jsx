@@ -4,6 +4,7 @@ import RemainingSpaceDiv from "./RemainingSpaceDiv";
 import { Alert } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../endpoint";
 
 const Status = () => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const Status = () => {
   const fetchBookings = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("/api/v1/booking/status", {
+      const response = await axios.get(`${BASE_URL}/v1/booking/status`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept: "application/json",

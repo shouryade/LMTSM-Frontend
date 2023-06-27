@@ -11,6 +11,7 @@ import {
 import Requisition from "../../components/Requisition";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { BASE_URL } from "../../endpoint";
 
 import Approvals from "../../components/Approvals";
 import OfficeUse from "../../components/OfficeUse";
@@ -27,7 +28,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get("/api/v1/auth/users/me/", {
+      .get(`${BASE_URL}/v1/auth/users/me/`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept: "application/json",

@@ -4,6 +4,7 @@ import axios from "axios";
 import { HiCheck, HiInformationCircle } from "react-icons/hi";
 import { Alert } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../endpoint";
 
 function DownloadFile() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function DownloadFile() {
 
   const handleDownload = async () => {
     axios
-      .get("/api/v1/booking/download", {
+      .get(`${BASE_URL}/v1/booking/download`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept:

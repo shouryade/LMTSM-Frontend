@@ -3,6 +3,7 @@ import axios from "axios";
 import { Alert } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../endpoint";
 
 const RoleManagement = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const RoleManagement = () => {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("/api/v1/admin/roles", {
+      const response = await axios.get(`${BASE_URL}/v1/admin/roles`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept: "application/json",
@@ -63,7 +64,7 @@ const RoleManagement = () => {
 
   const handleApproveRole = async (id, role) => {
     try {
-      await axios.put(`/api/v1/admin/approve/${id}?role=${role}`, null, {
+      await axios.put(`${BASE_URL}/v1/admin/approve/${id}?role=${role}`, null, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept: "application/json",
@@ -78,7 +79,7 @@ const RoleManagement = () => {
 
   const handleRevokeRole = async (id, role) => {
     try {
-      await axios.delete(`/api/v1/admin/approve/${id}?role=${role}`, {
+      await axios.delete(`${BASE_URL}/v1/admin/approve/${id}?role=${role}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept: "application/json",

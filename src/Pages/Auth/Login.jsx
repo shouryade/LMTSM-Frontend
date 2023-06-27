@@ -4,7 +4,7 @@ import { HiInformationCircle } from "react-icons/hi";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { BASE_URL } from "../../endpoint";
 // http://127.0.0.1:8100/v1/auth/login
 
 export default function Login() {
@@ -52,7 +52,7 @@ export default function Login() {
     const myObj = JSON.parse(payload);
     axios
       .post(
-        "/api/v1/auth/login",
+        `${BASE_URL}/v1/auth/login`,
         {
           grant_type: "",
           username: myObj.email,

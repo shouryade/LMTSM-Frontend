@@ -4,6 +4,7 @@ import { HiInformationCircle, HiCheck } from "react-icons/hi";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BASE_URL } from "../../endpoint";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ const Register = () => {
     const myObj = JSON.parse(payload);
     axios
       .post(
-        "/api/v1/auth/register",
+        `${BASE_URL}/v1/auth/register`,
         {
           des: myObj.des,
           first_name: myObj.first_name,

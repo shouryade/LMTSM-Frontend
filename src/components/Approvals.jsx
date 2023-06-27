@@ -4,6 +4,7 @@ import RemainingSpaceDiv from "./RemainingSpaceDiv";
 import { Alert } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../endpoint";
 
 const Approvals = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Approvals = () => {
   const fetchBookings = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("/api/v1/booking/bookings", {
+      const response = await axios.get("${BASE_URL}/v1/booking/bookings", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept: "application/json",
@@ -30,7 +31,7 @@ const Approvals = () => {
   const handleApproveBooking = async (id) => {
     try {
       const res = await axios.put(
-        `/api/v1/booking/approve/${id}`,
+        `${BASE_URL}/v1/booking/approve/${id}`,
         { _id: id, status: "Approved" },
         {
           headers: {
@@ -51,12 +52,15 @@ const Approvals = () => {
 
   const handleDeleteBooking = async (id) => {
     try {
-      const response = await axios.delete(`/api/v1/booking/approve/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          Accept: "application/json",
-        },
-      });
+      const response = await axios.delete(
+        `${BASE_URL}/v1/booking/approve/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            Accept: "application/json",
+          },
+        }
+      );
       setBookings((prevBookings) =>
         prevBookings.filter((booking) => booking._id !== id)
       );

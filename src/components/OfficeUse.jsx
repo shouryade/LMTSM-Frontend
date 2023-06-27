@@ -3,6 +3,7 @@ import axios from "axios";
 import { Alert, Button } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../endpoint";
 
 function OfficeUse() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ function OfficeUse() {
 
   const fetchApprovedBookings = async () => {
     try {
-      const response = await axios.get("/api/v1/booking/approved", {
+      const response = await axios.get(`${BASE_URL}/v1/booking/approved`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept: "application/json",
@@ -71,7 +72,7 @@ function OfficeUse() {
       setLoading(true);
 
       await axios.put(
-        `/api/v1/booking/approved/${dropdownId}/allocate`,
+        `${BASE_URL}/v1/booking/approved/${dropdownId}/allocate`,
         {
           name,
           phone,
@@ -116,7 +117,7 @@ function OfficeUse() {
       setLoading(true);
 
       await axios.put(
-        `/api/v1/booking/approved/${dropdownId}/completed`,
+        `${BASE_URL}/v1/booking/approved/${dropdownId}/completed`,
         {
           total,
           trip_id: tripId,

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { BASE_URL } from "../endpoint";
 
 import { Alert, Button } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
@@ -22,7 +23,7 @@ const PrintReadyComponent = () => {
   }, []);
   const fetchDutySlips = async () => {
     try {
-      const response = await axios.get("/api/v1/booking/duty-slips", {
+      const response = await axios.get(`${BASE_URL}/v1/booking/duty-slips`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept: "application/json",
