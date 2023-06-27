@@ -16,7 +16,7 @@ const Approvals = () => {
   const fetchBookings = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("${BASE_URL}/v1/booking/bookings", {
+      const response = await axios.get(`${BASE_URL}/v1/booking/bookings`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           Accept: "application/json",
