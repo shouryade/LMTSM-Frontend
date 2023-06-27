@@ -10,7 +10,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #1e293b;
-  background: linear-gradient(0deg, rgba(17, 25, 40, 0.30), rgba(17, 25, 40, 0.30)), url(bgnew.jpg) no-repeat;
+  background: linear-gradient(0deg, rgba(17, 25, 40, 0.30), rgba(17, 25, 40, 0.30)), url(assets/bgnew.jpg) no-repeat;
   background-size: cover;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
