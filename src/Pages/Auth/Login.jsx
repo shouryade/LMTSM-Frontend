@@ -1,5 +1,5 @@
 import React from "react";
-import { Label, TextInput, Checkbox, Button, Alert } from "flowbite-react";
+import { Label, Checkbox, Button, Alert } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,34 @@ export default function Login() {
     email: "",
     password: "",
   });
+
+  const handleRequestError = (error) => {
+    if (error.code === "ERR_NETWORK") {
+      setError(true);
+      setErrorMessage("Server Error! Please try later. ");
+      setTimeout(() => {
+        setError(false);
+      }, 5000);
+    } else if (error.response.status === 401) {
+      setError(true);
+      const msg = `${error.response.data.detail}. Going back to the authentication page in 5 seconds.`;
+      setErrorMessage(msg);
+      localStorage.removeItem("jwt");
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000);
+    } else {
+      setError(true);
+      if (error.message === "Network Error") {
+        setErrorMessage("Server Error!");
+      } else {
+        setErrorMessage(error.response.data.message);
+      }
+      setTimeout(() => {
+        setError(false);
+      }, 5000);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,18 +77,7 @@ export default function Login() {
         }
       })
       .catch((error) => {
-        if (error.message == "Network Error") {
-          setErrorMessage("Server Error!");
-        } else {
-          setError(true);
-          setErrorMessage(
-            "Login Error! Change a few things up and try submitting again."
-          );
-          setValues({
-            email: "",
-            password: "",
-          });
-        }
+        handleRequestError(error);
       });
   };
 
@@ -73,7 +90,6 @@ export default function Login() {
     }));
   };
   return (
-    // <div class=""></div>
     <div className="flex flex-row" id="auth">
       <div className="basis-7/12">
         <div className="md:my-[15vh] inline-flex justify-between items-center py-1 px-1 pr-4 mb-7"></div>
@@ -84,14 +100,14 @@ export default function Login() {
             <span className="text-[#c01313]">LMTSM</span> Account
           </h1>
 
-          <p class="pt-2 mt-10 text-[18px] leading-[27px] font-inter font-normal">
+          <p className="pt-2 mt-10 text-[18px] leading-[27px] font-inter font-normal">
             <a
               href="/register"
-              class="inline-flex items-center text-inter font-normal text-[#FFFFFF] underline"
+              className="inline-flex items-center text-inter font-normal text-[#FFFFFF] underline"
             >
               Create an account if you do not have one
               <svg
-                class="w-5 h-5 ml-2 -mr-1"
+                className="w-5 h-5 ml-2 -mr-1"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -132,14 +148,14 @@ export default function Login() {
                   <div>
                     <Label
                       htmlFor="email"
-                      class="block mb-2 text-inter text-sm font-medium text-white dark:text-white"
+                      className="block mb-2 text-inter text-sm font-medium text-white dark:text-white"
                       value="Your email"
                     />
                     <input
                       id="email"
                       type="email"
                       placeholder="name@company.com"
-                      class="bg-[#4B5563] border border-[#4B5563] text-white-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-[#4B5563] border border-[#4B5563] text-white-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       name="email"
                       value={values.email}
                       onChange={handleChange}
@@ -150,7 +166,7 @@ export default function Login() {
                   <div>
                     <Label
                       htmlFor="password1"
-                      class="block mb-2 text-inter text-sm font-medium text-white dark:text-white"
+                      className="block mb-2 text-inter text-sm font-medium text-white dark:text-white"
                       value="Your password"
                     />
 
@@ -159,7 +175,7 @@ export default function Login() {
                       name="password"
                       id="password"
                       placeholder="••••••••"
-                      class="bg-[#4B5563] border border-[#4B5563] text-white-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-[#4B5563] border border-[#4B5563] text-white-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       value={values.password}
                       onChange={handleChange}
                       required={true}
@@ -167,34 +183,24 @@ export default function Login() {
                     />
                   </div>
                   <div className="flex items-center justify-between">
-                    <div class="flex items-start">
-                      <div className="flex items-center h-5">
-                        <Checkbox id="remember" />
-                      </div>
-                      <div className="ml-3 text-sm">
-                        <Label htmlFor="remember" className="text-white">
-                          Remember me
-                        </Label>
-                      </div>
-                    </div>
                     <a
                       href="#"
-                      class="text-sm font-medium text-white hover:underline dark:text-primary-500"
+                      className="text-sm font-medium text-white hover:underline dark:text-primary-500"
                     >
                       Forgot password?
                     </a>
                   </div>
                   <Button
                     type="submit"
-                    class="w-full text-inter text-[#1E1E1E] text-medium bg-[#558EFF] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5"
+                    className="w-full text-inter text-[#1E1E1E] text-medium bg-[#558EFF] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5"
                   >
                     <span className="text-center">Login to your account</span>
                   </Button>
-                  <p class="text-sm font-light text-white dark:text-gray-400">
+                  <p className="text-sm font-light text-white dark:text-gray-400">
                     Not registered yet?{" "}
                     <a
                       href="/register"
-                      class="font-medium text-[#558EFF] hover:underline dark:text-primary-500"
+                      className="font-medium text-[#558EFF] hover:underline dark:text-primary-500"
                     >
                       Create an account
                     </a>
