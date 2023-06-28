@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Alert, Button } from "flowbite-react";
-import { HiInformationCircle } from "react-icons/hi";
+import { HiInformationCircle, HiOutlineXCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../endpoint";
 
@@ -285,22 +285,24 @@ function OfficeUse() {
                             </span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap border">
-                            <div className="flex items-center">
-                              <button
-                                className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
-                                onClick={() =>
-                                  handleDropdownToggle(booking._id)
-                                }
-                              >
-                                Actions
-                              </button>
+                            <div className="flex flex-col sm:flex-row items-center">
+                              {!dropdownId && (
+                                <button
+                                  className="px-4 py-2 mt-2 sm:mt-0 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
+                                  onClick={() =>
+                                    handleDropdownToggle(booking._id)
+                                  }
+                                >
+                                  Actions
+                                </button>
+                              )}
 
                               {dropdownId === booking._id && (
-                                <div className="ml-4">
+                                <div className="mt-2 sm:ml-4">
                                   {!booking.name_of_driver && (
                                     <form
                                       onSubmit={handleAllocateResourceSubmit}
-                                      className="grid grid-cols-2 gap-4"
+                                      className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                                     >
                                       <input
                                         type="text"
@@ -340,13 +342,23 @@ function OfficeUse() {
                                       >
                                         Allocate
                                       </button>
+                                      <Button
+                                        className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600"
+                                        onClick={() =>
+                                          handleDropdownToggle(null)
+                                        }
+                                      >
+                                        Discard Changes
+                                        <br />
+                                        <HiOutlineXCircle className="h-full w-6" />
+                                      </Button>
                                     </form>
                                   )}
                                   {booking.name_of_driver &&
                                     !booking.trip_completed && (
                                       <form
                                         onSubmit={handleCompleteTripSubmit}
-                                        className="grid grid-cols-2 gap-4"
+                                        className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                                       >
                                         <input
                                           type="number"
@@ -388,7 +400,6 @@ function OfficeUse() {
                                           required={true}
                                           className="px-4 py-2 border rounded-md"
                                         />
-
                                         <input
                                           type="text"
                                           placeholder="Out Date"
@@ -411,7 +422,7 @@ function OfficeUse() {
                                         />
                                         <input
                                           type="text"
-                                          placeholder="In Date "
+                                          placeholder="In Date"
                                           value={inDate}
                                           onChange={(e) =>
                                             setInDate(e.target.value)
@@ -429,13 +440,23 @@ function OfficeUse() {
                                           required={true}
                                           className="px-4 py-2 border rounded-md"
                                         />
-
                                         <button
                                           type="submit"
                                           className="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600"
                                         >
-                                          Complete Trip
+                                          Complete <br />
+                                          Trip
                                         </button>
+                                        <Button
+                                          className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600"
+                                          onClick={() =>
+                                            handleDropdownToggle(null)
+                                          }
+                                        >
+                                          Discard Changes
+                                          <br />
+                                          <HiOutlineXCircle className="h-full w-6" />
+                                        </Button>
                                       </form>
                                     )}
                                 </div>
