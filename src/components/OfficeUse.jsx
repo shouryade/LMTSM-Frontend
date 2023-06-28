@@ -252,7 +252,6 @@ function OfficeUse() {
                     <tbody className="bg-white divide-y divide-gray-200">
                       {bookings.map((booking) => (
                         <tr key={booking._id}>
-                          <td className="px-6 py-4 whitespace-nowrap border"></td>
                           <td className="px-6 py-4 whitespace-nowrap border">
                             <span className="px-2 inline-flex">
                               {booking.particulars.name}
