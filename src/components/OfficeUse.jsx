@@ -227,9 +227,6 @@ function OfficeUse() {
                     <thead className="bg-gray-50">
                       <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
-                          Trip Completed
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
                           Name
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
@@ -255,11 +252,7 @@ function OfficeUse() {
                     <tbody className="bg-white divide-y divide-gray-200">
                       {bookings.map((booking) => (
                         <tr key={booking._id}>
-                          <td className="px-6 py-4 whitespace-nowrap border">
-                            <span className="px-2 inline-flex">
-                              {booking.trip_completed ? "Yes" : "No"}
-                            </span>
-                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap border"></td>
                           <td className="px-6 py-4 whitespace-nowrap border">
                             <span className="px-2 inline-flex">
                               {booking.particulars.name}
