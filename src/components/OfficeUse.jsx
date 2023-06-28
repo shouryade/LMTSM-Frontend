@@ -348,7 +348,7 @@ function OfficeUse() {
                                           handleDropdownToggle(null)
                                         }
                                       >
-                                        Discard Changes
+                                        Discard
                                         <br />
                                         <HiOutlineXCircle className="h-full w-6" />
                                       </Button>
