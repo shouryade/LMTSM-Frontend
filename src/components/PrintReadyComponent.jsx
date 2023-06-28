@@ -31,9 +31,7 @@ const PrintReadyComponent = () => {
       });
       setDutySlips(response.data);
     } catch (error) {
-      if (error.code === "ERR_NETWORK") {
-        handleRequestError(error);
-      }
+      handleRequestError(error);
     }
   };
 

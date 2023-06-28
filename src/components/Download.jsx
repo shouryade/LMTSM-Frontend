@@ -30,7 +30,17 @@ function DownloadFile() {
 
           const link = document.createElement("a");
           link.href = href;
-          link.setAttribute("download", "file.xlsx");
+
+          const currentDate = new Date();
+          const formattedDate = currentDate.toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          });
+
+          const fileName = `trips_${formattedDate}.xlsx`;
+          link.setAttribute("download", fileName);
+
           document.body.appendChild(link);
           link.click();
 
