@@ -116,9 +116,7 @@ const PrintReadyComponent = () => {
           <div className="flex flex-wrap justify-center text-black bg-white">
             <div className="Heading" id="Heading">
               <div>
-                <div className="flex items-center imageitis">
-                  <img src="logo.png" alt="image" className="imageitis" />
-                </div>
+               
 
                 <h5 className="text-[30px] leading-[30px] font-montserrat font-extrabold tracking-none text-white-900 dark:text-white">
                   <p className="text-4xl font-bold mb-4 text-black">

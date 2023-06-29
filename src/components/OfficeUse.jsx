@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Alert, Button } from "flowbite-react";
-import { HiInformationCircle } from "react-icons/hi";
+import { HiInformationCircle, HiOutlineXCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+
 
 function OfficeUse() {
   const navigate = useNavigate();
@@ -30,15 +31,12 @@ function OfficeUse() {
 
   const fetchApprovedBookings = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:8100/v1/booking/approved",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            Accept: "application/json",
-          },
-        }
-      );
+      const response = await axios.get(`${BASE_URL}/v1/booking/approved`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Accept: "application/json",
+        },
+      });
       setBookings(response.data);
     } catch (error) {
       setLoading(false);
@@ -74,7 +72,7 @@ function OfficeUse() {
       setLoading(true);
 
       await axios.put(
-        `http://localhost:8100/v1/booking/approved/${dropdownId}/allocate`,
+        `${BASE_URL}/v1/booking/approved/${dropdownId}/allocate`,
         {
           name,
           phone,
@@ -119,7 +117,7 @@ function OfficeUse() {
       setLoading(true);
 
       await axios.put(
-        `http://localhost:8100/v1/booking/approved/${dropdownId}/completed`,
+        `${BASE_URL}/v1/booking/approved/${dropdownId}/completed`,
         {
           total,
           trip_id: tripId,
@@ -229,9 +227,6 @@ function OfficeUse() {
                     <thead className="bg-gray-50">
                       <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
-                          Trip Completed
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
                           Name
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
@@ -257,11 +252,6 @@ function OfficeUse() {
                     <tbody className="bg-white divide-y divide-gray-200">
                       {bookings.map((booking) => (
                         <tr key={booking._id}>
-                          <td className="px-6 py-4 whitespace-nowrap border">
-                            <span className="px-2 inline-flex">
-                              {booking.trip_completed ? "Yes" : "No"}
-                            </span>
-                          </td>
                           <td className="px-6 py-4 whitespace-nowrap border">
                             <span className="px-2 inline-flex">
                               {booking.particulars.name}
@@ -295,22 +285,24 @@ function OfficeUse() {
                             </span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap border">
-                            <div className="flex items-center">
-                              <button
-                                className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
-                                onClick={() =>
-                                  handleDropdownToggle(booking._id)
-                                }
-                              >
-                                Actions
-                              </button>
+                            <div className="flex flex-col sm:flex-row items-center">
+                              {!dropdownId && (
+                                <button
+                                  className="px-4 py-2 mt-2 sm:mt-0 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
+                                  onClick={() =>
+                                    handleDropdownToggle(booking._id)
+                                  }
+                                >
+                                  Actions
+                                </button>
+                              )}
 
                               {dropdownId === booking._id && (
-                                <div className="ml-4">
+                                <div className="mt-2 sm:ml-4">
                                   {!booking.name_of_driver && (
                                     <form
                                       onSubmit={handleAllocateResourceSubmit}
-                                      className="grid grid-cols-2 gap-4"
+                                      className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                                     >
                                       <input
                                         type="text"
@@ -350,13 +342,23 @@ function OfficeUse() {
                                       >
                                         Allocate
                                       </button>
+                                      <Button
+                                        className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600"
+                                        onClick={() =>
+                                          handleDropdownToggle(null)
+                                        }
+                                      >
+                                        Discard
+                                        <br />
+                                        <HiOutlineXCircle className="h-full w-6" />
+                                      </Button>
                                     </form>
                                   )}
                                   {booking.name_of_driver &&
                                     !booking.trip_completed && (
                                       <form
                                         onSubmit={handleCompleteTripSubmit}
-                                        className="grid grid-cols-2 gap-4"
+                                        className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                                       >
                                         <input
                                           type="number"
@@ -398,9 +400,8 @@ function OfficeUse() {
                                           required={true}
                                           className="px-4 py-2 border rounded-md"
                                         />
-
                                         <input
-                                          type="text"
+                                          type="date"
                                           placeholder="Out Date"
                                           value={outDate}
                                           onChange={(e) =>
@@ -410,7 +411,7 @@ function OfficeUse() {
                                           className="px-4 py-2 border rounded-md"
                                         />
                                         <input
-                                          type="text"
+                                          type="time"
                                           placeholder="Out Time"
                                           value={outTime}
                                           onChange={(e) =>
@@ -420,8 +421,8 @@ function OfficeUse() {
                                           className="px-4 py-2 border rounded-md"
                                         />
                                         <input
-                                          type="text"
-                                          placeholder="In Date "
+                                          type="date"
+                                          placeholder="In Date"
                                           value={inDate}
                                           onChange={(e) =>
                                             setInDate(e.target.value)
@@ -430,7 +431,7 @@ function OfficeUse() {
                                           className="px-4 py-2 border rounded-md"
                                         />
                                         <input
-                                          type="text"
+                                          type="time"
                                           placeholder="In Time"
                                           value={inTime}
                                           onChange={(e) =>
@@ -439,13 +440,23 @@ function OfficeUse() {
                                           required={true}
                                           className="px-4 py-2 border rounded-md"
                                         />
-
                                         <button
                                           type="submit"
                                           className="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600"
                                         >
-                                          Complete Trip
+                                          Complete <br />
+                                          Trip
                                         </button>
+                                        <Button
+                                          className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600"
+                                          onClick={() =>
+                                            handleDropdownToggle(null)
+                                          }
+                                        >
+                                          Discard Changes
+                                          <br />
+                                          <HiOutlineXCircle className="h-full w-6" />
+                                        </Button>
                                       </form>
                                     )}
                                 </div>
