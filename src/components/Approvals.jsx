@@ -5,7 +5,8 @@ import { Alert } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
-const Approvals = () => {
+const Approvals = () => 
+{
   const navigate = useNavigate();
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -51,25 +52,29 @@ const Approvals = () => {
       handleRequestError(error);
     }
   };
-
   const handleDeleteBooking = async (id) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:8100/v1/booking/approve/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            Accept: "application/json",
-          },
-        }
-      );
-      setBookings((prevBookings) =>
-        prevBookings.filter((booking) => booking._id !== id)
-      );
+      const reason = prompt("Enter the reason for rejection:");
+      if (reason) {
+        const response = await axios.delete(
+          `http://localhost:8100/v1/booking/approve/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+              Accept: "application/json",
+            },
+            data: { reason }, // Pass the reason in the request body
+          }
+        );
+        setBookings((prevBookings) =>
+          prevBookings.filter((booking) => booking._id !== id)
+        );
+      }
     } catch (error) {
       handleRequestError(error);
     }
   };
+  
 
   const handleRequestError = (error) => {
     setLoading(false);

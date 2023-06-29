@@ -9,11 +9,8 @@ const Status = () => {
   const navigate = useNavigate();
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const [error, setError] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-
-
 
   const handleRequestError = (error) => {
     setLoading(false);
@@ -59,11 +56,12 @@ const Status = () => {
       );
       setBookings(response.data);
     } catch (error) {
-     handleRequestError(error);
+      handleRequestError(error);
     } finally {
       setLoading(false);
     }
   };
+
   const handleRefresh = () => {
     fetchBookings();
   };
@@ -123,6 +121,9 @@ const Status = () => {
                           <span className="px-2 inline-flex">
                             Contact Number
                           </span>
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
+                          <span className="px-2 inline-flex">Reason</span>
                         </th>
                       </tr>
                     </thead>
@@ -186,6 +187,11 @@ const Status = () => {
                                 : "N/A"}
                             </span>
                           </td>
+                          <td className="px-6 py-4 whitespace-nowrap border">
+                            <span className="px-2 inline-flex">
+                              {booking.reason}
+                            </span>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -202,3 +208,4 @@ const Status = () => {
 };
 
 export default Status;
+
