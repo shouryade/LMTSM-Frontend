@@ -19,7 +19,8 @@ function Requisition() {
     endDate: "",
     time: "",
     place_of_visit: "",
-    purpose: "personal",
+    purpose: "",
+    reason: "",
     num_people: "",
     chargeable_head: "",
   });
@@ -86,7 +87,8 @@ function Requisition() {
             endDate: "",
             time: "",
             place_of_visit: "",
-            purpose: "personal",
+            purpose: "",
+            reason: "",
             num_people: "",
             chargeable_head: "",
           });
@@ -261,6 +263,18 @@ function Requisition() {
                     <option value="official">Official</option>
                   </select>
                 </div>
+                <div className="grid-item">
+                  <label className="label">Reason of Travel</label>
+                  <input
+                    className="bg-transparent border border-[#4B5563] text-white-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    type="text"
+                    name="reason"
+                    value={formValues.reason}
+                    onChange={handleChange}
+                    required={true}
+                    autoComplete="off"
+                  />
+                </div>
                 {formValues.purpose === "official" && (
                   <div className="grid-item">
                     <label className="label">Chargeable Head</label>
@@ -269,6 +283,7 @@ function Requisition() {
                       name="chargeable_head"
                       value={formValues.chargeable_head}
                       onChange={handleChange}
+                      required={true}
                     >
                       <option value="Travel Expenses">
                         Travel Expenses (Staff/Faculty)
