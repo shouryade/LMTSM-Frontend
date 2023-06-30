@@ -400,46 +400,57 @@ function OfficeUse() {
                                           required={true}
                                           className="px-4 py-2 border rounded-md"
                                         />
-                                        <input
-                                          type="date"
-                                          placeholder="Out Date"
-                                          value={outDate}
-                                          onChange={(e) =>
-                                            setOutDate(e.target.value)
-                                          }
-                                          required={true}
-                                          className="px-4 py-2 border rounded-md"
-                                        />
-                                        <input
-                                          type="time"
-                                          placeholder="Out Time"
-                                          value={outTime}
-                                          onChange={(e) =>
-                                            setOutTime(e.target.value)
-                                          }
-                                          required={true}
-                                          className="px-4 py-2 border rounded-md"
-                                        />
-                                        <input
-                                          type="date"
-                                          placeholder="In Date"
-                                          value={inDate}
-                                          onChange={(e) =>
-                                            setInDate(e.target.value)
-                                          }
-                                          required={true}
-                                          className="px-4 py-2 border rounded-md"
-                                        />
-                                        <input
-                                          type="time"
-                                          placeholder="In Time"
-                                          value={inTime}
-                                          onChange={(e) =>
-                                            setInTime(e.target.value)
-                                          }
-                                          required={true}
-                                          className="px-4 py-2 border rounded-md"
-                                        />
+                                        <div className="grid grid-rows-3 gap-5">
+                                          <label htmlFor="general-info">
+                                            Out Date and Time
+                                          </label>
+                                          <input
+                                            type="date"
+                                            placeholder="Out Date"
+                                            value={inDate}
+                                            onChange={(e) =>
+                                              setOutDate(e.target.value)
+                                            }
+                                            required={true}
+                                            className="px-4 py-2 border rounded-md"
+                                          />
+                                          <input
+                                            type="time"
+                                            placeholder="Out Time"
+                                            value={inTime}
+                                            onChange={(e) =>
+                                              setOutTime(e.target.value)
+                                            }
+                                            required={true}
+                                            className="px-4 py-2 border rounded-md"
+                                          />
+                                        </div>
+                                        <div className="grid grid-rows-3 gap-5">
+                                          <label htmlFor="general-info">
+                                            In Date and Time
+                                          </label>
+                                          <input
+                                            type="date"
+                                            placeholder="In Date"
+                                            value={inDate}
+                                            onChange={(e) =>
+                                              setInDate(e.target.value)
+                                            }
+                                            required={true}
+                                            className="px-4 py-2 border rounded-md"
+                                          />
+                                          <input
+                                            type="time"
+                                            id="inTime"
+                                            placeholder="In Time"
+                                            value={inTime}
+                                            onChange={(e) =>
+                                              setInTime(e.target.value)
+                                            }
+                                            required={true}
+                                            className="px-4 py-2 border rounded-md"
+                                          />
+                                        </div>
                                         <button
                                           type="submit"
                                           className="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600"
