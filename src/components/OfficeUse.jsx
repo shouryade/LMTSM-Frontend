@@ -4,6 +4,7 @@ import { Alert, Button } from "flowbite-react";
 import { HiInformationCircle, HiOutlineXCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../endpoint";
+import { drivers } from "../constants";
 
 function OfficeUse() {
   const navigate = useNavigate();
@@ -304,16 +305,34 @@ function OfficeUse() {
                                       onSubmit={handleAllocateResourceSubmit}
                                       className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                                     >
-                                      <input
-                                        type="text"
-                                        placeholder="Driver Name"
+                                      <select
                                         value={name}
-                                        required={true}
                                         onChange={(e) => {
                                           setName(e.target.value);
+                                          const selectedDriver = drivers.find(
+                                            (driver) =>
+                                              driver.name === e.target.value
+                                          );
+                                          if (selectedDriver) {
+                                            setPhone(selectedDriver.phone);
+                                          } else {
+                                            setPhone("");
+                                          }
                                         }}
+                                        required={true}
                                         className="px-4 py-2 border rounded-md"
-                                      />
+                                      >
+                                        <option value="">Select Driver</option>
+                                        {drivers.map((driver) => (
+                                          <option
+                                            key={driver.name}
+                                            value={driver.name}
+                                          >
+                                            {driver.name}
+                                          </option>
+                                        ))}
+                                      </select>
+
                                       <input
                                         type="tel"
                                         placeholder="Driver Phone"
@@ -325,17 +344,38 @@ function OfficeUse() {
                                         }}
                                         className="px-4 py-2 border rounded-md"
                                       />
-                                      <input
-                                        type="text"
-                                        placeholder="Vehicle Number"
+                                      <select
                                         value={vehicle}
+                                        onChange={(e) =>
+                                          setVehicle(e.target.value)
+                                        }
                                         required={true}
-                                        autoComplete="off"
-                                        onChange={(e) => {
-                                          setVehicle(e.target.value);
-                                        }}
                                         className="px-4 py-2 border rounded-md"
-                                      />
+                                      >
+                                        <option value="">
+                                          Select Vehicle Number
+                                        </option>
+                                        <option value="PB-65-Z-2239">
+                                          PB-65-Z-2239
+                                        </option>
+                                        <option value="PB-11-BS-4690">
+                                          PB-11-BS-4690
+                                        </option>
+                                        <option value="PB-11-BP-9089">
+                                          PB-11-BP-9089
+                                        </option>
+                                        <option value="PB-11-DB-6090">
+                                          PB-11-DB-6090
+                                        </option>
+                                        <option value="PB-11-CP-0150">
+                                          PB-11-CP-0150
+                                        </option>
+                                        <option value="PB-11-BN-5932">
+                                          PB-11-BN-5932
+                                        </option>
+                                        <option value="TAXI">TAXI</option>
+                                      </select>
+
                                       <button
                                         type="submit"
                                         className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
@@ -407,7 +447,7 @@ function OfficeUse() {
                                           <input
                                             type="date"
                                             placeholder="Out Date"
-                                            value={inDate}
+                                            value={outDate}
                                             onChange={(e) =>
                                               setOutDate(e.target.value)
                                             }
@@ -417,7 +457,7 @@ function OfficeUse() {
                                           <input
                                             type="time"
                                             placeholder="Out Time"
-                                            value={inTime}
+                                            value={outTime}
                                             onChange={(e) =>
                                               setOutTime(e.target.value)
                                             }
