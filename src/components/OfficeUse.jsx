@@ -401,7 +401,7 @@ function OfficeUse() {
                                           className="px-4 py-2 border rounded-md"
                                         />
                                         <input
-                                          type="text"
+                                          type="date"
                                           placeholder="Out Date"
                                           value={outDate}
                                           onChange={(e) =>
@@ -411,7 +411,7 @@ function OfficeUse() {
                                           className="px-4 py-2 border rounded-md"
                                         />
                                         <input
-                                          type="text"
+                                          type="time"
                                           placeholder="Out Time"
                                           value={outTime}
                                           onChange={(e) =>
@@ -421,7 +421,7 @@ function OfficeUse() {
                                           className="px-4 py-2 border rounded-md"
                                         />
                                         <input
-                                          type="text"
+                                          type="date"
                                           placeholder="In Date"
                                           value={inDate}
                                           onChange={(e) =>
@@ -431,7 +431,7 @@ function OfficeUse() {
                                           className="px-4 py-2 border rounded-md"
                                         />
                                         <input
-                                          type="text"
+                                          type="time"
                                           placeholder="In Time"
                                           value={inTime}
                                           onChange={(e) =>

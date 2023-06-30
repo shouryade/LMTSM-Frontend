@@ -249,11 +249,24 @@ function Requisition() {
                       value={formValues.chargeable_head}
                       onChange={handleChange}
                     >
-                      <option value="admin">Admin</option>
-                      <option value="faculty">Faculty</option>
-                      <option value="placements">Placements</option>
-                      <option value="admissions">Admissions</option>
-                      <option value="cms">CMS</option>
+                      <option value="Travel Expenses">
+                        Travel Expenses (Staff/Faculty)
+                      </option>
+                      <option value="Horticulture">Horticulture</option>
+                      <option value="Admission Expenses">
+                        Admission Expenses
+                      </option>
+                      <option value="Repair and Maintenance">
+                        Repair & Maintanance
+                      </option>
+                      <option value="Placement Cell">Placement Cell</option>
+                      <option value="Admin">Admin</option>
+                      <option value="Outreach Information TIET Amritsar">
+                        OUTREACH INFORMATION CENTRE (TIET) AMRITSAR
+                      </option>
+                      <option value="Outreach Information TIET Dehradun">
+                        OUTREACH INFORMATION CENTRE (TIET) DEHRADUN
+                      </option>
                     </select>
                   </div>
                 )}
