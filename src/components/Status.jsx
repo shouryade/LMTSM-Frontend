@@ -120,6 +120,9 @@ const Status = () => {
                             Contact Number
                           </span>
                         </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
+                          <span className="px-2 inline-flex">Reason</span>
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
@@ -180,6 +183,11 @@ const Status = () => {
                                   ? booking.phone_of_driver
                                   : "To Be Decided"
                                 : "N/A"}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap border">
+                            <span className="px-2 inline-flex">
+                              {booking.reason}
                             </span>
                           </td>
                         </tr>

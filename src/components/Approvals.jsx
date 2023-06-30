@@ -52,18 +52,22 @@ const Approvals = () => {
 
   const handleDeleteBooking = async (id) => {
     try {
-      const response = await axios.delete(
-        `${BASE_URL}/v1/booking/approve/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            Accept: "application/json",
-          },
-        }
-      );
-      setBookings((prevBookings) =>
-        prevBookings.filter((booking) => booking._id !== id)
-      );
+      const reason = prompt("Enter the reason for rejection:");
+      if (reason) {
+        const response = await axios.delete(
+          `${BASE_URL}/v1/booking/approve/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+              Accept: "application/json",
+            },
+            data: { reason }, // Pass the reason in the request body
+          }
+        );
+        setBookings((prevBookings) =>
+          prevBookings.filter((booking) => booking._id !== id)
+        );
+      }
     } catch (error) {
       handleRequestError(error);
     }
