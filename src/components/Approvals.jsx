@@ -149,7 +149,7 @@ const Approvals = () => {
                         scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
-                        Date
+                        Date Range
                       </th>
                       <th
                         scope="col"
@@ -192,27 +192,42 @@ const Approvals = () => {
                   <tbody className="bg-white divide-y divide-gray-200">
                     {bookings.map((booking) => (
                       <tr key={booking._id} className="my-2">
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-6 py-4 whitespace-nowrap border">
                           {booking.particulars.name}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {new Date(
-                            booking.particulars.date
-                          ).toLocaleDateString("en-GB")}
+                        <td className="px-6 py-4 whitespace-nowrap border">
+                          <div className="px-2">
+                            <div>
+                              <span className="text-gray-500">From </span>
+                              <span className="text-blue-500">
+                                {new Date(
+                                  booking.particulars.startDate
+                                ).toLocaleDateString("en-GB")}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="text-gray-500">To </span>
+                              <span className="text-blue-500">
+                                {new Date(
+                                  booking.particulars.endDate
+                                ).toLocaleDateString("en-GB")}
+                              </span>
+                            </div>
+                          </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-6 py-4 whitespace-nowrap border">
                           {booking.particulars.time}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-6 py-4 whitespace-nowrap border">
                           {booking.particulars.place_of_visit}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-6 py-4 whitespace-nowrap border">
                           {booking.particulars.purpose}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-6 py-4 whitespace-nowrap border">
                           {booking.particulars.num_people}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-6 py-4 whitespace-nowrap border">
                           {booking.status}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">

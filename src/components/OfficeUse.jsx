@@ -234,7 +234,7 @@ function OfficeUse() {
                           Purpose
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
-                          Date of Visit
+                          Date Range
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
                           Time of Visit
@@ -264,12 +264,26 @@ function OfficeUse() {
                             </span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap border">
-                            <span className="px-2 inline-flex">
-                              {new Date(
-                                booking.particulars.date
-                              ).toLocaleDateString("en-GB")}
-                            </span>
+                            <div className="px-2">
+                              <div>
+                                <span className="text-gray-500">From </span>
+                                <span className="text-blue-500">
+                                  {new Date(
+                                    booking.particulars.startDate
+                                  ).toLocaleDateString("en-GB")}
+                                </span>
+                              </div>
+                              <div>
+                                <span className="text-gray-500">To </span>
+                                <span className="text-blue-500">
+                                  {new Date(
+                                    booking.particulars.endDate
+                                  ).toLocaleDateString("en-GB")}
+                                </span>
+                              </div>
+                            </div>
                           </td>
+
                           <td className="px-6 py-4 whitespace-nowrap border">
                             <span className="px-2 inline-flex">
                               {booking.particulars.time}

@@ -26,7 +26,11 @@ function Requisition() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "num_people" && value <= 0) {
+    if (name === "num_people" && (value === "" || parseInt(value) <= 0)) {
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        [name]: "",
+      }));
       return;
     }
 
@@ -64,7 +68,6 @@ function Requisition() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     setLoading(true);
 
     axios
@@ -237,11 +240,12 @@ function Requisition() {
                     onChange={handleChange}
                     min={1}
                   />
-                  {formValues.num_people <= 0 && (
-                    <span className="text-red-500">
-                      Please enter a valid number of people.
-                    </span>
-                  )}
+                  {formValues.num_people !== "" &&
+                    formValues.num_people <= 0 && (
+                      <span className="text-red-500">
+                        Please enter a valid number of people.
+                      </span>
+                    )}
                 </div>
                 <div className="grid-item">
                   <label className="label">Purpose</label>
@@ -292,7 +296,9 @@ function Requisition() {
                 type="submit"
                 className="mt-10 inline-flex items-center justify-center px-5 py-3 mr-3 text-inter font-normal text-center text-white rounded-lg bg-[#558EFF] hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 text-[#1E1E1E]"
                 disabled={
-                  !isDateValid(formValues.date) || !isTimeValid(formValues.time)
+                  !isDateValid(formValues.endDate) ||
+                  !isTimeValid(formValues.time) ||
+                  !isDateValid(formValues.startDate)
                 }
               >
                 <span className="text-center">Send a Booking Request</span>
