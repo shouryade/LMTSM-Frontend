@@ -61,12 +61,13 @@ const Approvals = () => {
               Authorization: `Bearer ${localStorage.getItem("jwt")}`,
               Accept: "application/json",
             },
-            data: { reason }, // Pass the reason in the request body
+            data: { reason },
           }
         );
         setBookings((prevBookings) =>
           prevBookings.filter((booking) => booking._id !== id)
         );
+        handleRefresh();
       }
     } catch (error) {
       handleRequestError(error);

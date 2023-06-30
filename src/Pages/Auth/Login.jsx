@@ -95,9 +95,7 @@ export default function Login() {
         <div className="md:my-[15vh] inline-flex justify-between items-center py-1 px-1 pr-4 mb-7"></div>
         <div className="py-4 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
           <h1 className="mb-[1rem] text-[3rem] sm:text-[60px] leading-[60px] pt-2 font-inter font-extrabold tracking-normal leading-10 text-[#FFFFFF]">
-            Log Into your
-            <br />
-            <span className="text-[#c01313]">LMTSM</span> Account
+            <span className="text-[#c01313]">LMTSM</span> SERVICES
           </h1>
 
           <p className="pt-2 mt-10 text-[18px] leading-[27px] font-inter font-normal">
