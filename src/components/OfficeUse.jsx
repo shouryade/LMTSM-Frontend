@@ -137,6 +137,7 @@ function OfficeUse() {
         }
       );
 
+      handleDropdownToggle(null);
       fetchApprovedBookings();
 
       setTotal(null);
@@ -185,6 +186,7 @@ function OfficeUse() {
   };
 
   const handleRefresh = () => {
+    handleDropdownToggle(null);
     fetchApprovedBookings();
   };
 
