@@ -22,7 +22,6 @@ const RoleManagement = () => {
         },
       });
       setUsers(response.data);
-      console.log(response.data);
     } catch (error) {
       handleRequestError(error);
     }
@@ -94,9 +93,6 @@ const RoleManagement = () => {
   const handleRefresh = () => {
     fetchUsers();
   };
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
 
   return (
     <>

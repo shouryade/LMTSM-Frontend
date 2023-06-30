@@ -15,7 +15,8 @@ function Requisition() {
 
   const [formValues, setFormValues] = useState({
     name: "",
-    date: "",
+    startDate: "",
+    endDate: "",
     time: "",
     place_of_visit: "",
     purpose: "personal",
@@ -24,6 +25,11 @@ function Requisition() {
   });
 
   const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (name === "num_people" && value <= 0) {
+      return;
+    }
+
     setFormValues({
       ...formValues,
       [event.target.name]: event.target.value,
@@ -54,15 +60,10 @@ function Requisition() {
 
     return true;
   };
+  const today = new Date().toISOString().split("T")[0];
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const currentDate = new Date().toISOString().split("T")[0];
-    const currentTime = new Date().toLocaleTimeString(navigator.language, {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
 
     setLoading(true);
 
@@ -78,7 +79,8 @@ function Requisition() {
           setSuccess(true);
           setFormValues({
             name: "",
-            date: "",
+            startDate: "",
+            endDate: "",
             time: "",
             place_of_visit: "",
             purpose: "personal",
@@ -166,23 +168,36 @@ function Requisition() {
                 </div>
 
                 <div className="grid-item">
-                  <label className="label">Date of Visit</label>
-                  <input
-                    className="bg-transparent border border-[#4B5563] text-white-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    type="date"
-                    name="date"
-                    value={formValues.date}
-                    onChange={handleChange}
-                    required={true}
-                    autoComplete="off"
-                  />
-                  {!isDateValid(formValues.date) && (
+                  <label className="label">Interval of Requisition</label>
+                  <div className="flex space-x-2">
+                    <input
+                      className="bg-transparent border border-[#4B5563] text-white-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      type="date"
+                      name="startDate"
+                      value={formValues.startDate}
+                      onChange={handleChange}
+                      required={true}
+                      autoComplete="off"
+                      min={today}
+                    />
+                    <span className="text-white">to</span>
+                    <input
+                      className="bg-transparent border border-[#4B5563] text-white-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      type="date"
+                      name="endDate"
+                      value={formValues.endDate}
+                      onChange={handleChange}
+                      required={true}
+                      autoComplete="off"
+                      min={formValues.startDate}
+                    />
+                  </div>
+                  {formValues.startDate > formValues.endDate && (
                     <span className="text-red-500">
-                      Please enter a valid date.
+                      Please enter a valid date range.
                     </span>
                   )}
                 </div>
-
                 <div className="grid-item">
                   <label className="label">Time of Visit</label>
                   <input
@@ -200,7 +215,6 @@ function Requisition() {
                     </span>
                   )}
                 </div>
-
                 <div className="grid-item">
                   <label className="label">Place of Visit</label>
                   <input
@@ -213,7 +227,6 @@ function Requisition() {
                     autoComplete="off"
                   />
                 </div>
-
                 <div className="grid-item">
                   <label className="label">Number of People</label>
                   <input
@@ -222,9 +235,14 @@ function Requisition() {
                     name="num_people"
                     value={formValues.num_people}
                     onChange={handleChange}
+                    min={1}
                   />
+                  {formValues.num_people <= 0 && (
+                    <span className="text-red-500">
+                      Please enter a valid number of people.
+                    </span>
+                  )}
                 </div>
-
                 <div className="grid-item">
                   <label className="label">Purpose</label>
                   <select
@@ -239,7 +257,6 @@ function Requisition() {
                     <option value="official">Official</option>
                   </select>
                 </div>
-
                 {formValues.purpose === "official" && (
                   <div className="grid-item">
                     <label className="label">Chargeable Head</label>
