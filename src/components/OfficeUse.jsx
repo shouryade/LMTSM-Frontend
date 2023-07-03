@@ -25,6 +25,11 @@ function OfficeUse() {
   const [outDate, setOutDate] = useState("");
   const [outTime, setOutTime] = useState("");
   const [dropdownId, setDropdownId] = useState("");
+  
+
+
+  
+
 
   useEffect(() => {
     fetchApprovedBookings();
@@ -113,6 +118,16 @@ function OfficeUse() {
     ) {
       return;
     }
+
+    if (startReading === endReading) {
+      setErrorMessage("Please enter a valid reading (starting and closing readings cannot be the same).");
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 5000);
+      return;
+    }
+
 
     try {
       setLoading(true);
