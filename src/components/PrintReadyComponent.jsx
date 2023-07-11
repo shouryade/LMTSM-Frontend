@@ -109,139 +109,68 @@ const PrintReadyComponent = () => {
           <div className="flex flex-wrap justify-center text-black bg-white">
             <div className="Heading" id="Heading">
               <div>
-                <div className="flex items-center imageitis">
-                  <img src="logo.png" alt="image" className="imageitis" />
-                </div>
-
-                <p className="text-2xl font-bold mb-4 text-black text-center">
+                <p className="text-2xl pt-8 font-bold mb-4 text-black text-center">
                   DUTY SLIPS
                 </p>
               </div>
 
               {dutySlips.map((dutySlip, index) => (
                 <div className="flex flex-wrap border border-gray-500 p-4 mb-4">
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Driver Name:</strong>{" "}
-                    <div className="border border-gray-500 p-2">
-                      {dutySlip.name_of_driver}
-                    </div>
+                  <div className="border border-gray-500 p-2 mx-1">
+                    <strong>Booking For : </strong> {dutySlip.booking_name},
+                    <span className="text-blue-500"> {dutySlip.phone}</span>, (
+                    {dutySlip.dep} {dutySlip.des})
                   </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Vehicle Number:</strong>{" "}
-                    <div className="border border-gray-500 p-2">
-                      {dutySlip.vehicle_number}
-                    </div>
-                  </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Date:</strong>{" "}
-                    <div className="border border-gray-500 p-2">
-                      {new Date(dutySlip.date).toLocaleDateString("en-GB")}
-                    </div>
-                  </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Time:</strong>{" "}
-                    <div className="border border-gray-500 p-2">
-                      {dutySlip.time}
-                    </div>
-                  </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Booking For:</strong>{" "}
-                    <div className="border border-gray-500 p-2">
-                      {dutySlip.booking_name}
-                    </div>
-                  </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Place of Visit:</strong>{" "}
-                    <div className="border border-gray-500 p-2">
-                      {dutySlip.place_of_visit}
-                    </div>
-                  </div>
-
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Number of People:</strong>{" "}
-                    <div className="border border-gray-500 p-2">
-                      {dutySlip.num_people}
-                    </div>
-                  </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Phone Number:</strong>{" "}
-                    <div className="border border-gray-500 p-2">
-                      {dutySlip.phone}
-                    </div>
-                  </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Department:</strong>{" "}
-                    <div className="border border-gray-500 p-2">
-                      {dutySlip.dep}
-                    </div>
-                  </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Designation:</strong>{" "}
-                    <div className="border border-gray-500 p-2">
-                      {dutySlip.des}
-                    </div>
-                  </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Purpose:</strong>{" "}
-                    <div className="border border-gray-500 p-2">
-                      {dutySlip.purpose}
-                    </div>
-                  </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Chargeable Head:</strong>{" "}
-                    <div className="border border-gray-500 p-2">
+                  <div className="border border-gray-500 p-2 mx-1">
+                    <strong>Additional Details : </strong> {dutySlip.num_people}{" "}
+                    people | {dutySlip.purpose} | Chargeable Head:{" "}
+                    <span className="text-blue-500">
                       {dutySlip.chargeable_head
                         ? dutySlip.chargeable_head
-                        : "N/A"}
-                    </div>
+                        : "N/A"}{" "}
+                    </span>
                   </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Transaction ID:</strong>{" "}
-                    <div className="border border-gray-500 p-2 text-white">
-                      Txn ID
-                    </div>
+                  <div className="w-full p-2" />
+                  <div className="border border-gray-500 p-2 mx-1">
+                    <strong>Driver Details:</strong> {dutySlip.name_of_driver},
+                    <span className="text-blue-500">
+                      {" "}
+                      {dutySlip.vehicle_number}
+                    </span>
+                    {/* {dutySlip.phone_of_driver} */}
                   </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Total Amount:</strong>{" "}
-                    <div className="border border-gray-500 p-2 text-white">
-                      Amount
-                    </div>
+                  <div className="border border-gray-500 p-2 mx-1">
+                    <strong>Trip Details : </strong>{" "}
+                    {new Date(dutySlip.date).toLocaleDateString("en-GB")} ,
+                    {dutySlip.time},
+                    <span className="text-blue-500">
+                      {" "}
+                      {dutySlip.place_of_visit}
+                    </span>
                   </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Initial Meter Reading:</strong>{" "}
-                    <div className="border border-gray-500 p-2 text-white">
-                      Meter
-                    </div>
+                  <div className="p-2 mx-1 mr-[60px]">
+                    <strong>Total Amount: </strong>{" "}
+                    <div className="px-8 text-white" />
                   </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Final Meter Reading:</strong>{" "}
-                    <div className="border border-gray-500 p-2 text-white">
-                      Final
-                    </div>
+                  <div className="p-2 mx-1">
+                    <strong>Transaction ID: </strong>{" "}
+                    <div className="px-8 text-white" />
                   </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Out Date:</strong>{" "}
-                    <div className="border border-gray-500 p-2 text-white">
-                      Out date
-                    </div>
+                  <div className="w-full p-2" />
+                  <div className="border border-gray-500 p-2 mx-1 w-1/4 text-left">
+                    <strong>Meter Readings (in KM)</strong> <br />
+                    Initial Meter Reading: <br />
+                    Final Meter Reading:{" "}
                   </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>Out Time:</strong>{" "}
-                    <div className="border border-gray-500 p-2 text-white">
-                      out time
-                    </div>
+                  <div className="border border-gray-500 p-2 mx-1 w-1/3 text-left">
+                    <strong>OUT</strong> <br />
+                    Out Date: <br />
+                    Out Time:{" "}
                   </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>In Date:</strong>{" "}
-                    <div className="border border-gray-500 p-2 text-white">
-                      in date
-                    </div>
-                  </div>
-                  <div className="w-1/4 p-2 border-b border-r border-gray-500">
-                    <strong>In time</strong>{" "}
-                    <div className="border border-gray-500 p-2 text-white">
-                      in time
-                    </div>
+                  <div className="border border-gray-500 p-2 mx-1 w-1/3 text-left">
+                    <strong>IN</strong> <br />
+                    In Date: <br />
+                    In Time:{" "}
                   </div>
                 </div>
               ))}
