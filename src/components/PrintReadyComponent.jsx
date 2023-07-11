@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+import html2pdf from "html2pdf.js";
 import { BASE_URL } from "../endpoint";
 
 import { Alert, Button } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-
-// import "public/logo.png";
 
 const PrintReadyComponent = () => {
   const navigate = useNavigate();
@@ -69,24 +66,24 @@ const PrintReadyComponent = () => {
     fetchDutySlips();
   };
 
-  const handlePrint = () => {
-    const component = document.getElementById("print-component");
+  const handlePrint = async () => {
+    var component = document.getElementById("print-component");
+
     if (!component) {
       console.error("Component element not found.");
       return;
     }
-    const doc = new jsPDF();
-    html2canvas(component).then((canvas) => {
-      const imageData = canvas.toDataURL("image/png");
-      const imgWidth = doc.internal.pageSize.getWidth();
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      doc.addImage(imageData, "PNG", 0, 0, imgWidth, imgHeight);
-      doc.autoPrint();
-      const today = new Date();
-      const dateStr = today.toLocaleDateString().replaceAll("/", "-");
-      const fileName = `${dateStr}-duty-slip.pdf`;
-      doc.save(fileName);
-    });
+
+    // // Set the options for the PDF generation
+    const options = {
+      filename: "duty-slips.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "pt", format: "a4", orientation: "portrait" },
+    };
+    html2pdf().set(options).from(component).save();
+    // // Generate the PDF
+    // pdf.set(options).save();
   };
 
   return (
@@ -107,6 +104,7 @@ const PrintReadyComponent = () => {
             Refresh
           </button>
         </div>
+
         <div className="print-component" id="print-component">
           <div className="flex flex-wrap justify-center text-black bg-white">
             <div className="Heading" id="Heading">
@@ -115,11 +113,9 @@ const PrintReadyComponent = () => {
                   <img src="logo.png" alt="image" className="imageitis" />
                 </div>
 
-                <h5 className="text-[30px] leading-[30px] font-montserrat font-extrabold tracking-none text-white-900 dark:text-white">
-                  <p className="text-4xl font-bold mb-4 text-black">
-                    DUTY SLIPS
-                  </p>
-                </h5>
+                <p className="text-2xl font-bold mb-4 text-black text-center">
+                  DUTY SLIPS
+                </p>
               </div>
 
               {dutySlips.map((dutySlip, index) => (
@@ -252,8 +248,9 @@ const PrintReadyComponent = () => {
             </div>
           </div>
         </div>
+
         <button
-          onClick={handlePrint}
+          onClick={() => handlePrint()}
           className="px-4 py-2 mt-10 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-green-600"
         >
           Print Duty Slips

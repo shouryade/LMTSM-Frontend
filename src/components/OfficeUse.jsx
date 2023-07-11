@@ -25,11 +25,6 @@ function OfficeUse() {
   const [outDate, setOutDate] = useState("");
   const [outTime, setOutTime] = useState("");
   const [dropdownId, setDropdownId] = useState("");
-  
-
-
-  
-
 
   useEffect(() => {
     fetchApprovedBookings();
@@ -120,14 +115,15 @@ function OfficeUse() {
     }
 
     if (startReading === endReading) {
-      setErrorMessage("Please enter a valid reading (starting and closing readings cannot be the same).");
+      setErrorMessage(
+        "Please enter a valid reading (starting and closing readings cannot be the same)."
+      );
       setError(true);
       setTimeout(() => {
         setError(false);
       }, 5000);
       return;
     }
-
 
     try {
       setLoading(true);
@@ -254,13 +250,7 @@ function OfficeUse() {
                           Date Range
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
-                          Time of Visit
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
-                          Place of Visit
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
-                          Number of People
+                          Information
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border">
                           Actions
@@ -302,21 +292,19 @@ function OfficeUse() {
                           </td>
 
                           <td className="px-6 py-4 whitespace-nowrap border">
-                            <span className="px-2 inline-flex">
-                              {booking.particulars.time}
-                            </span>
+                            {/* <span className="px-2 inline-flex"> */}
+                            {booking.particulars.num_people}{" "}
+                            <span className="text-blue-500"> people </span>
+                            <br />
+                            <span className="text-blue-500">to </span>
+                            {booking.particulars.place_of_visit}
+                            <br />
+                            <span className="text-blue-500">at </span>
+                            {booking.particulars.time}
+                            {/* </span> */}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap border">
-                            <span className="px-2 inline-flex">
-                              {booking.particulars.place_of_visit}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap border">
-                            <span className="px-2 inline-flex">
-                              {booking.particulars.num_people}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap border">
+
+                          <td className="px-14 py-4 whitespace-nowrap border">
                             <div className="flex flex-col sm:flex-row items-center">
                               {!dropdownId && (
                                 <button

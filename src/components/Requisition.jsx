@@ -254,15 +254,17 @@ function Requisition() {
                   <select
                     className="bg-transparent border border-[#4B5563] text-white-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     name="purpose"
-                    value={formValues.purpose}
+                    value={formValues.purpose || ""}
                     onChange={handleChange}
                     required={true}
                     autoComplete="off"
                   >
+                    <option value="">Please select</option>{" "}
                     <option value="personal">Personal</option>
                     <option value="official">Official</option>
                   </select>
                 </div>
+
                 <div className="grid-item">
                   <label className="label">Reason of Travel</label>
                   <input
@@ -281,10 +283,11 @@ function Requisition() {
                     <select
                       className="bg-transparent border border-[#4B5563] text-white-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       name="chargeable_head"
-                      value={formValues.chargeable_head}
+                      value={formValues.chargeable_head || ""}
                       onChange={handleChange}
                       required={true}
                     >
+                      <option value="">Please select</option>{" "}
                       <option value="Travel Expenses">
                         Travel Expenses (Staff/Faculty)
                       </option>
