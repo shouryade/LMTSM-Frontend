@@ -74,16 +74,12 @@ const PrintReadyComponent = () => {
       return;
     }
 
-    // // Set the options for the PDF generation
+    const today = new Date();
     const options = {
-      filename: "duty-slips.pdf",
+      filename: `duty-slips-${today.toLocaleDateString("en-GB")}.pdf`,
       image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "pt", format: "a4", orientation: "portrait" },
     };
     html2pdf().set(options).from(component).save();
-    // // Generate the PDF
-    // pdf.set(options).save();
   };
 
   return (
@@ -109,8 +105,8 @@ const PrintReadyComponent = () => {
           <div className="flex flex-wrap justify-center text-black bg-white">
             <div className="Heading" id="Heading">
               <div>
-                <p className="text-2xl pt-8 font-bold mb-4 text-black text-center">
-                  DUTY SLIPS
+                <p className="text-1xl font-bold mb-2 text-black text-center">
+                  LMTSM DUTY SLIPS
                 </p>
               </div>
 
