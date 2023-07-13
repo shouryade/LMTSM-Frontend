@@ -92,6 +92,12 @@ const PrintReadyComponent = () => {
         </Alert>
       )}
       <div className="container mx-auto py-8">
+        <button
+          onClick={() => handlePrint()}
+          className="px-4 py-2 mt-10 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-green-600"
+        >
+          Print Duty Slips
+        </button>
         <div className="flex justify-end mb-4">
           <button
             className="text-white bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded"
@@ -173,13 +179,6 @@ const PrintReadyComponent = () => {
             </div>
           </div>
         </div>
-
-        <button
-          onClick={() => handlePrint()}
-          className="px-4 py-2 mt-10 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-green-600"
-        >
-          Print Duty Slips
-        </button>
       </div>
     </>
   );
