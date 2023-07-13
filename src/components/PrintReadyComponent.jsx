@@ -78,6 +78,8 @@ const PrintReadyComponent = () => {
     const options = {
       filename: `duty-slips-${today.toLocaleDateString("en-GB")}.pdf`,
       image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "pt", format: "a4", orientation: "portrait" },
     };
     html2pdf().set(options).from(component).save();
   };
@@ -159,10 +161,10 @@ const PrintReadyComponent = () => {
                     <div className="px-8 text-white" />
                   </div>
                   <div className="w-full p-2" />
-                  <div className="border border-gray-500 p-2 mx-1 w-1/4 text-left">
-                    <strong>Meter Readings (in KM)</strong> <br />
-                    Initial Meter Reading: <br />
-                    Final Meter Reading:{" "}
+                  <div className="border border-gray-500 p-2 mx-1 w-1/4.5 text-left">
+                    <strong>Meter Reading (in KM)</strong> <br />
+                    Initial: <br />
+                    Final:{" "}
                   </div>
                   <div className="border border-gray-500 p-2 mx-1 w-1/3 text-left">
                     <strong>OUT</strong> <br />
