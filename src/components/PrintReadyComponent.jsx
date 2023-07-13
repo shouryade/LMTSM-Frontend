@@ -119,7 +119,7 @@ const PrintReadyComponent = () => {
               </div>
 
               {dutySlips.map((dutySlip, index) => (
-                <div className="flex flex-wrap border border-gray-500 p-4 mb-4">
+                <div className="flex flex-wrap border border-gray-500 p-4 mb-4 text-sm">
                   <div className="border border-gray-500 p-2 mx-1">
                     <strong>Booking For : </strong> {dutySlip.booking_name},
                     <span className="text-blue-500"> {dutySlip.phone}</span>, (
@@ -127,12 +127,7 @@ const PrintReadyComponent = () => {
                   </div>
                   <div className="border border-gray-500 p-2 mx-1">
                     <strong>Additional Details : </strong> {dutySlip.num_people}{" "}
-                    people | {dutySlip.purpose} | Chargeable Head:{" "}
-                    <span className="text-blue-500">
-                      {dutySlip.chargeable_head
-                        ? dutySlip.chargeable_head
-                        : "N/A"}{" "}
-                    </span>
+                    people | {dutySlip.purpose}
                   </div>
                   <div className="w-full p-2" />
                   <div className="border border-gray-500 p-2 mx-1">
