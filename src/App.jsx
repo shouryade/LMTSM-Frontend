@@ -4,13 +4,13 @@ import { Route, Routes, Navigate } from "react-router-dom";
 // Component Imports
 import Dashboard from "./Pages/Dashboard/Dashboard";
 
-import NavbarComponent from "./components/NavbarComponent";
+import NavbarComponent from "./components/travelComponents/NavbarComponent";
 import HomePage from "./Pages/Home/HomePage";
 // import AboutPage from "./Pages/Home/AboutPage";
 // import Generate from "./Pages/Services/Generate";
 import Login from "./Pages/Auth/Login";
 import Register from "./Pages/Auth/Register";
-import FooterComponent from "./components/FooterComponent";
+import FooterComponent from "./components/travelComponents/FooterComponent";
 // import NotFoundPage from "./Pages/NotFoundPage";
 
 // Protected Component
