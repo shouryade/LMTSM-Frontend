@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import html2pdf from "html2pdf.js";
-import { BASE_URL } from "../endpoint";
+import { BASE_URL } from "../../endpoint";
 
 import { Alert, Button } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";

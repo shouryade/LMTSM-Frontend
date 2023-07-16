@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import RemainingSpaceDiv from "./RemainingSpaceDiv";
+import RemainingSpaceDiv from "../RemainingSpaceDiv";
 import { Alert } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../endpoint";
+import { BASE_URL } from "../../endpoint";
 
 const Status = () => {
   const navigate = useNavigate();
@@ -129,13 +129,12 @@ const Status = () => {
                       {bookings.map((booking) => (
                         <tr key={booking._id}>
                           <td
-                            className={`${
-                              booking.status === "Approved"
+                            className={`${booking.status === "Approved"
                                 ? "text-green-500"
                                 : booking.status === "Pending"
-                                ? "text-yellow-400"
-                                : "text-red-500"
-                            } px-6 py-4 whitespace-nowrap border`}
+                                  ? "text-yellow-400"
+                                  : "text-red-500"
+                              } px-6 py-4 whitespace-nowrap border`}
                           >
                             <span className="px-2 inline-flex">
                               {booking.status}

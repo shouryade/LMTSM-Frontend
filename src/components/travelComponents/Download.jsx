@@ -4,7 +4,7 @@ import axios from "axios";
 import { HiCheck, HiInformationCircle } from "react-icons/hi";
 import { Alert } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../endpoint";
+import { BASE_URL } from "../../endpoint";
 
 function DownloadFile() {
   const navigate = useNavigate();

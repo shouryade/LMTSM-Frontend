@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import RemainingSpaceDiv from "./RemainingSpaceDiv";
+import RemainingSpaceDiv from "../RemainingSpaceDiv";
 import { Alert } from "flowbite-react";
 import { HiInformationCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../endpoint";
+import { BASE_URL } from "../../endpoint";
 
 const Approvals = () => {
   const navigate = useNavigate();

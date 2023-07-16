@@ -8,17 +8,17 @@ import {
   HiOutlineInboxIn,
   HiDocumentDownload,
 } from "react-icons/hi";
-import Requisition from "../../components/Requisition";
+import Requisition from "../../components/travelComponents/Requisition";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../endpoint";
 
-import Approvals from "../../components/Approvals";
-import OfficeUse from "../../components/OfficeUse";
-import Status from "../../components/Status";
-import RoleManagement from "../../components/RoleManagement";
-import PrintReadyComponent from "../../components/PrintReadyComponent";
-import DownloadFile from "../../components/Download";
+import Approvals from "../../components/travelComponents/Approvals";
+import OfficeUse from "../../components/travelComponents/OfficeUse";
+import Status from "../../components/travelComponents/Status";
+import RoleManagement from "../../components/travelComponents/RoleManagement";
+import PrintReadyComponent from "../../components/travelComponents/PrintReadyComponent";
+import DownloadFile from "../../components/travelComponents/Download";
 
 const Dashboard = () => {
   const [admin, setAdmin] = useState(false);

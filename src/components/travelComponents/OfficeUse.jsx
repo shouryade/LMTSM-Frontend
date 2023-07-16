@@ -3,8 +3,8 @@ import axios from "axios";
 import { Alert, Button } from "flowbite-react";
 import { HiInformationCircle, HiOutlineXCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../endpoint";
-import { drivers } from "../constants";
+import { BASE_URL } from "../../endpoint";
+import { drivers } from "../../constants";
 
 function OfficeUse() {
   const navigate = useNavigate();

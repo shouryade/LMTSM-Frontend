@@ -32,7 +32,7 @@ function App() {
           path="/dashboard"
           element={<ProtectedRoute element={<Dashboard />} />}
         />
-
+    
         {/* <Route path="/*" element={<NotFoundPage />}></Route> */}
       </Routes>
 
