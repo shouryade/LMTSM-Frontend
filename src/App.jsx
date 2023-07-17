@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 
 // Component Imports
-import Dashboard from "./Pages/Dashboard/Dashboard";
+import TravelDashboard from "./Pages/Dashboard/TravelDashboard";
 import NavbarComponent from "./components/NavbarComponent";
 import HomePage from "./Pages/Home/HomePage";
 import Login from "./Pages/Auth/Login";
@@ -32,7 +32,7 @@ function App() {
         />
         <Route
           path="/dashboard/travel"
-          element={<ProtectedRoute element={<Dashboard />} />}
+          element={<ProtectedRoute element={<TravelDashboard />} />}
         />
 
         {/* <Route path="/*" element={<NotFoundPage />}></Route> */}
