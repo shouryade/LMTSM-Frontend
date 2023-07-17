@@ -161,9 +161,9 @@ const Status = () => {
                             </div>
                           </td>
 
-                          <td className="px-6 py-4 whitespace-nowrap border">
+                          <td className="px-6 py-4 whitespace-pre-rap border">
                             <span className="px-2 inline-flex">
-                              {booking.particulars.place_of_visit}
+                            <div style={{maxWidth:'150px' , wordWrap:'break-word'}}>{booking.particulars.place_of_visit}</div>
                             </span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap border">
@@ -198,9 +198,9 @@ const Status = () => {
                                 : "N/A"}
                             </span>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap border">
+                          <td className="px-6 py-4 whitespace-pre-rap border" style={{maxWidth:"300px"}}>
                             <span className="px-2 inline-flex">
-                              {booking.reason}
+                              <div style = {{maxWidth:'150 px',wordWrap: 'break-word'}} >{booking.reason}</div>
                             </span>
                           </td>
                         </tr>
