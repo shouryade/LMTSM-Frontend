@@ -30,6 +30,7 @@ function App() {
           path="/dashboard"
           element={<ProtectedRoute element={<SelectService />} />}
         />
+
         <Route
           path="/dashboard/travel"
           element={<ProtectedRoute element={<TravelDashboard />} />}
