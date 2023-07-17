@@ -11,6 +11,7 @@ import HomePage from "./Pages/Home/HomePage";
 import Login from "./Pages/Auth/Login";
 import Register from "./Pages/Auth/Register";
 import FooterComponent from "./components/FooterComponent";
+import SelectService from "./Pages/service/selectService";
 // import NotFoundPage from "./Pages/NotFoundPage";
 
 // Protected Component
@@ -30,9 +31,13 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route
           path="/dashboard"
+          element={<ProtectedRoute element={<SelectService />} />}
+        />
+         <Route
+          path="/travel"
           element={<ProtectedRoute element={<Dashboard />} />}
         />
-    
+        
         {/* <Route path="/*" element={<NotFoundPage />}></Route> */}
       </Routes>
 
