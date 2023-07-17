@@ -118,9 +118,8 @@ const PrintReadyComponent = () => {
                 </p>
               </div>
 
-              {dutySlips.map((dutySlip, index) => (
+              {dutySlips.map((dutySlip) => (
                 <div className="flex flex-wrap border border-gray-500 p-4 mb-4 text-sm">
-                  {" "}
                   <div className="border border-gray-500 p-2 mx-1">
                     <strong>Booking For : </strong> {dutySlip.booking_name},
                     <span className="text-blue-500"> {dutySlip.phone}</span>, (
