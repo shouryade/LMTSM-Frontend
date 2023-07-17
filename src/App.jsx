@@ -32,7 +32,7 @@ function App() {
         />
 
         <Route
-          path="/dashboard/travel"
+          path="/travel"
           element={<ProtectedRoute element={<TravelDashboard />} />}
         />
 
