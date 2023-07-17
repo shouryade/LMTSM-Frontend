@@ -260,9 +260,16 @@ function OfficeUse() {
                     <tbody className="bg-white divide-y divide-gray-200">
                       {bookings.map((booking) => (
                         <tr key={booking._id}>
-                          <td className="px-6 py-4 whitespace-pre-rap border">
+                          <td className="px-6 py-4 whitespace-pre-wrap border">
                             <span className="px-0 inline-flex ">
-                             <div style={{maxWidth:"100px",wordWrap: 'break-word'}}>{booking.particulars.name}</div> 
+                              <div
+                                style={{
+                                  maxWidth: "100px",
+                                  wordWrap: "break-word",
+                                }}
+                              >
+                                {booking.particulars.name}
+                              </div>
                             </span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap border">
@@ -291,18 +298,18 @@ function OfficeUse() {
                             </div>
                           </td>
 
-                          <td className="px-6 py-4 whitespace-pre-rap border " style={{maxWidth:"200px"}}>
-                            {/* <span className="px-2 inline-flex"> */}
+                          <td
+                            className="px-6 py-4 whitespace-pre-wrap border "
+                            style={{ maxWidth: "100px" }}
+                          >
                             {booking.particulars.num_people}{" "}
                             <span className="text-blue-500"> people </span>
                             <br />
                             <span className="text-blue-500 ">to </span>
-                            <div style={{ wordWrap: 'break-word' }}>{booking.particulars.place_of_visit}</div>
-                          
+                            {booking.particulars.place_of_visit}
                             <br />
                             <span className="text-blue-500">at </span>
                             {booking.particulars.time}
-                            {/* </span> */}
                           </td>
 
                           <td className="px-14 py-4 whitespace-nowrap border">

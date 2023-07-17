@@ -193,10 +193,16 @@ const Approvals = () => {
                   <tbody className="bg-white divide-y divide-gray-200">
                     {bookings.map((booking) => (
                       <tr key={booking._id} className="my-2">
-                        <td className="px-6 py-4 whitespace-pre-rap border" style={{maxWidth:'200px',wordWrap: 'break-word'}}>
+                        <td
+                          className="px-6 py-4 whitespace-pre-wrap border"
+                          style={{ maxWidth: "100px", wordWrap: "break-word" }}
+                        >
                           {booking.particulars.name}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap border">
+                        <td
+                          className="px-6 py-4 whitespace-pre-wrap border "
+                          style={{ maxWidth: "100px" }}
+                        >
                           <div className="px-2">
                             <div>
                               <span className="text-gray-500">From </span>
@@ -219,10 +225,18 @@ const Approvals = () => {
                         <td className="px-6 py-4 whitespace-nowrap border">
                           {booking.particulars.time}
                         </td>
-                        <td className="px-6 py-4 whitespace-pre-rap border" style = {{maxWidth:'200px'}}>
-                          <div style={{ wordWrap: 'break-word' }}>{booking.particulars.place_of_visit}</div>
+                        <td
+                          className="px-6 py-4 whitespace-pre-wrap border"
+                          style={{ maxWidth: "100px" }}
+                        >
+                          <div style={{ wordWrap: "break-word" }}>
+                            {booking.particulars.place_of_visit}
+                          </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-pre-rap border"style={{ wordWrap: 'break-word',maxWidth:'300px' }}>
+                        <td
+                          className="px-6 py-4 whitespace-pre-wrap border"
+                          style={{ wordWrap: "break-word", maxWidth: "300px" }}
+                        >
                           {booking.particulars.purpose} -{" "}
                           {booking.particulars.chargeable_head}
                           <br />

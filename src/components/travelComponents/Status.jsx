@@ -129,12 +129,13 @@ const Status = () => {
                       {bookings.map((booking) => (
                         <tr key={booking._id}>
                           <td
-                            className={`${booking.status === "Approved"
+                            className={`${
+                              booking.status === "Approved"
                                 ? "text-green-500"
                                 : booking.status === "Pending"
-                                  ? "text-yellow-400"
-                                  : "text-red-500"
-                              } px-6 py-4 whitespace-nowrap border`}
+                                ? "text-yellow-400"
+                                : "text-red-500"
+                            } px-6 py-4 whitespace-nowrap border`}
                           >
                             <span className="px-2 inline-flex">
                               {booking.status}
@@ -161,9 +162,16 @@ const Status = () => {
                             </div>
                           </td>
 
-                          <td className="px-6 py-4 whitespace-pre-rap border">
+                          <td className="px-6 py-4 whitespace-pre-wrap border">
                             <span className="px-2 inline-flex">
-                            <div style={{maxWidth:'150px' , wordWrap:'break-word'}}>{booking.particulars.place_of_visit}</div>
+                              <div
+                                style={{
+                                  maxWidth: "150px",
+                                  wordWrap: "break-word",
+                                }}
+                              >
+                                {booking.particulars.place_of_visit}
+                              </div>
                             </span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap border">
@@ -198,10 +206,14 @@ const Status = () => {
                                 : "N/A"}
                             </span>
                           </td>
-                          <td className="px-6 py-4 whitespace-pre-rap border" style={{maxWidth:"300px"}}>
-                            <span className="px-2 inline-flex">
-                              <div style = {{maxWidth:'150 px',wordWrap: 'break-word'}} >{booking.reason}</div>
-                            </span>
+                          <td className="px-6 py-4 whitespace-pre-wrap border">
+                            <div
+                              style={{
+                                maxWidth: "100 px",
+                              }}
+                            >
+                              {booking.reason}
+                            </div>
                           </td>
                         </tr>
                       ))}
