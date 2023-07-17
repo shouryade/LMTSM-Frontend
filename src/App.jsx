@@ -11,7 +11,7 @@ import HomePage from "./Pages/Home/HomePage";
 import Login from "./Pages/Auth/Login";
 import Register from "./Pages/Auth/Register";
 import FooterComponent from "./components/FooterComponent";
-import SelectService from "./Pages/service/selectService";
+import SelectService from "./Pages/service/SelectService";
 // import NotFoundPage from "./Pages/NotFoundPage";
 
 // Protected Component
@@ -33,11 +33,11 @@ function App() {
           path="/dashboard"
           element={<ProtectedRoute element={<SelectService />} />}
         />
-         <Route
-          path="/travel"
+        <Route
+          path="/dashboard/travel"
           element={<ProtectedRoute element={<Dashboard />} />}
         />
-        
+
         {/* <Route path="/*" element={<NotFoundPage />}></Route> */}
       </Routes>
 

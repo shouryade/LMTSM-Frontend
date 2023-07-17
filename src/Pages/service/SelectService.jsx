@@ -1,5 +1,5 @@
-import React from 'react';
-import {useNavigate} from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Section = () => {
   const navigate = useNavigate();
@@ -15,26 +15,35 @@ const Section = () => {
           {/* CMS */}
           <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-100  !bg-[#232537] rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
             <h2 className="mb-4 text-3xl font-semibold">Transport</h2>
-            <div className="flex justify-center items-center my-12" style={{ marginTop: '10px' }}>
+            <div
+              className="flex justify-center items-center my-12"
+              style={{ marginTop: "10px" }}
+            >
               <div className="w-64 h-64 bg-gray-50 rounded-full flex justify-center items-center">
-                <img src="../../Public/bus.png" alt="Transport Icon" className="w-64 h-64 rounded-full object-contain" />
+                <img
+                  src="../../Public/bus.png"
+                  alt="Transport Icon"
+                  className="w-64 h-64 rounded-full object-contain"
+                />
               </div>
             </div>
-            {/* List */}
-            <ul role="list" className="mb-8 space-y-4 text-left">
-              {/* TRANSPORT */}
-            </ul>
-            <button onClick={() => navigate("/travel")}
+
+            <ul role="list" className="mb-8 space-y-4 text-left"></ul>
+            <button
+              onClick={() => navigate("travel")}
               type="button"
               className="text-white bg-blue-700 hover:bg-blue-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-700 dark:hover:bg-blue-800 focus:outline-none dark:focus:ring-blue-800"
             >
               Go To Dashboard
             </button>
           </div>
-          {/* CMS*/}
+
           <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-100  !bg-[#232537] rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
             <h2 className="mb-4 text-3xl font-semibold">CMS</h2>
-            <div className="flex justify-center items-center my-12" style={{ marginTop: '10px' }}>
+            <div
+              className="flex justify-center items-center my-12"
+              style={{ marginTop: "10px" }}
+            >
               <div className="w-64 h-64 bg-gray-50 rounded-full flex justify-center items-center">
                 <img
                   src="../../Public/CMS.png"
@@ -57,9 +66,16 @@ const Section = () => {
           {/* TRANSPORT */}
           <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-100  !bg-[#232537] rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
             <h2 className="mb-4 text-3xl font-semibold">Service</h2>
-            <div className="flex justify-center items-center my-12" style={{ marginTop: '10px' }}>
+            <div
+              className="flex justify-center items-center my-12"
+              style={{ marginTop: "10px" }}
+            >
               <div className="w-64 h-64 bg-gray-200 rounded-full flex justify-center items-center">
-                <img src="your-image-url" alt="Transport Icon" className="w-40 h-40" />
+                <img
+                  src="your-image-url"
+                  alt="Transport Icon"
+                  className="w-40 h-40"
+                />
               </div>
             </div>
             {/* List */}
@@ -82,9 +98,7 @@ const Section = () => {
 const SelectService = () => {
   return (
     <>
-    
       <Section />
-   
     </>
   );
 };
