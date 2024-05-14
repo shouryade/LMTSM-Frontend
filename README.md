@@ -12,7 +12,7 @@ Make sure you have [Node.js](https://nodejs.org/en/) installeds.
    ```
 3. Run the app
    ```sh
-   npm dev
+   npm run dev
    ```
 4. Open the app in your browser at
    ```sh
