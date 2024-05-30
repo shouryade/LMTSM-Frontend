@@ -17,6 +17,11 @@ function ProtectedRoute({ element }) {
   return isAuthenticated ? element : <Navigate to="/login" />;
 }
 
+const roomLink = () => {
+  window.location.href = 'https://live.ipms247.com/booking/book-rooms-lmtsmguesthouse';
+  return null;
+};
+
 function App() {
   return (
     <div className="App sm:w-full">
@@ -34,6 +39,11 @@ function App() {
         <Route
           path="/travel"
           element={<ProtectedRoute element={<TravelDashboard />} />}
+        />
+
+        <Route
+          path="/room"
+          element={<ProtectedRoute element={<roomLink />} />}
         />
 
         {/* <Route path="/*" element={<NotFoundPage />}></Route> */}

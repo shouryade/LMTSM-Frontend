@@ -12,7 +12,7 @@ const FooterComponent = () => {
       <div className="w-full text-center">
         <Footer.Copyright
           href="/"
-          by="Developed by CSE Batch of '25 and '26, Derabassi"
+          by="Developed by CSE Batch of '25, '26 and '27, Derabassi"
           year={2023}
         />
       </div>
